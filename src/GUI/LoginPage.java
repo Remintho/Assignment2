@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Files.ScaleImage;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -15,7 +16,8 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class LoginPage extends javax.swing.JFrame {
-
+    
+    ScaleImage sImage = new ScaleImage();;
     /**
      * Creates new form LoginPage
      */
@@ -24,20 +26,13 @@ public class LoginPage extends javax.swing.JFrame {
         scaledImage1();
         scaledImage2();
     }
-    
     private void scaledImage1(){
-        ImageIcon icon = new ImageIcon(getClass().getResource("/image/bed-image1.jpg")); 
-        Image img = icon.getImage();
-        Image imgScale = img.getScaledInstance(sideIcon.getWidth(), sideIcon.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(imgScale);
-        sideIcon.setIcon(scaledIcon);
+        String imagePath = "/image/bed-image1.jpg";
+        sideIcon.setIcon(sImage.scaledImage(sideIcon, imagePath));
     }
     private void scaledImage2(){
-        ImageIcon icon = new ImageIcon(getClass().getResource("/image/bed-image2.jpg")); 
-        Image img = icon.getImage();
-        Image imgScale = img.getScaledInstance(bSideIcon.getWidth(), bSideIcon.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon scaledIcon = new ImageIcon(imgScale);
-        bSideIcon.setIcon(scaledIcon);
+        String imagePath = "/image/bed-image2.jpg"; 
+        bSideIcon.setIcon(sImage.scaledImage(bSideIcon, imagePath));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,7 +171,7 @@ public class LoginPage extends javax.swing.JFrame {
             returnMessage.setForeground(Color.blue);
             ReservationPage reservationPage = new ReservationPage();
             reservationPage.setVisible(true);
-            this.dispose();
+            dispose();
         }
         else {
             returnMessage.setText("bad password or username");
@@ -185,13 +180,13 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-         this.dispose();
+         dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void createAFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAFieldActionPerformed
         CreateUser newUser = new CreateUser();
         newUser.setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_createAFieldActionPerformed
     
     

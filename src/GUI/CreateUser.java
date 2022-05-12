@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import files.ghostField;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 
@@ -22,10 +21,8 @@ public class CreateUser extends javax.swing.JFrame {
         initComponents();
     }
     public void f(){
-        ghostField t = new ghostField(fNameField);
         FocusEvent evt = null;
-        fNameField.setText(t.fieldFocusGained(evt));
-        System.out.println(t.fieldFocusGained(evt));
+        
         
     }
     
