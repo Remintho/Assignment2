@@ -40,23 +40,37 @@
                       <Component id="createButton" min="-2" pref="89" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="EmailField" alignment="0" max="32767" attributes="0"/>
-                      <Component id="userNField" max="32767" attributes="0"/>
-                      <Component id="pwField" max="32767" attributes="0"/>
+                      <Component id="emailField" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="fNameField" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                              <Component id="fnField" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
                               <Component id="ageField" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lNameField" max="32767" attributes="0"/>
-                              <Component id="pNField" pref="159" max="32767" attributes="0"/>
+                              <Component id="lnField" max="32767" attributes="0"/>
+                              <Component id="phField" pref="159" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="pwField" min="-2" pref="197" max="-2" attributes="0"/>
+                          <Component id="userNField" min="-2" pref="197" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+                      <Component id="returnMessage" min="-2" pref="271" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,26 +87,28 @@
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lNameField" pref="31" max="32767" attributes="0"/>
-                  <Component id="fNameField" max="32767" attributes="0"/>
+                  <Component id="lnField" pref="31" max="32767" attributes="0"/>
+                  <Component id="fnField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="ageField" pref="31" max="32767" attributes="0"/>
-                  <Component id="pNField" max="32767" attributes="0"/>
+                  <Component id="phField" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="EmailField" min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="emailField" min="-2" pref="34" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="userNField" min="-2" pref="34" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="pwField" min="-2" pref="34" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="returnMessage" min="-2" pref="15" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="backButton" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="createButton" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="85" max="32767" attributes="0"/>
+              <EmptySpace pref="101" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,17 +132,17 @@
         <Property name="text" type="java.lang.String" value="       Register"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="fNameField">
+    <Component class="javax.swing.JTextField" name="fnField">
       <Properties>
         <Property name="text" type="java.lang.String" value="First Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="lNameField">
+    <Component class="javax.swing.JTextField" name="lnField">
       <Properties>
         <Property name="text" type="java.lang.String" value="Last Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="EmailField">
+    <Component class="javax.swing.JTextField" name="emailField">
       <Properties>
         <Property name="text" type="java.lang.String" value="Email "/>
       </Properties>
@@ -146,7 +162,7 @@
         <Property name="text" type="java.lang.String" value="Age"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="pNField">
+    <Component class="javax.swing.JTextField" name="phField">
       <Properties>
         <Property name="text" type="java.lang.String" value="Phone Number"/>
       </Properties>
@@ -155,6 +171,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Create"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="backButton">
       <Properties>
@@ -163,6 +182,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="returnMessage">
     </Component>
   </SubComponents>
 </Form>

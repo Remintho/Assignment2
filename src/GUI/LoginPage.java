@@ -7,8 +7,6 @@ package GUI;
 
 import Files.ScaleImage;
 import java.awt.Color;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,7 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class LoginPage extends javax.swing.JFrame {
     
-    ScaleImage sImage = new ScaleImage();;
+    ScaleImage sImage = new ScaleImage();
+    Files.LoginPage lPage = new Files.LoginPage();
+    Files.Reservation reserve = new Files.Reservation();
+
     /**
      * Creates new form LoginPage
      */
@@ -166,17 +167,24 @@ public class LoginPage extends javax.swing.JFrame {
         if(passwordField.getPassword().length == 0 || userNameField.getText().trim().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(rootPane, "invalid, try again");
         }
-        else if(passText.equalsIgnoreCase("rame") && userNameField.getText().trim().equalsIgnoreCase("rame")){
-            returnMessage.setText("yay");
+        else if(userNameField.getText().equalsIgnoreCase("admin") && passText.equalsIgnoreCase("admin")){
+            AdminPage adminPage = new AdminPage();
+            adminPage.setVisible(true);
+            this.setVisible(false);
+        }
+        else if(lPage.checkLogin(userNameField.getText(), passText)==true){
             returnMessage.setForeground(Color.blue);
             ReservationPage reservationPage = new ReservationPage();
+            reservationPage.getuserName(userNameField.getText());
             reservationPage.setVisible(true);
-            dispose();
+            this.setVisible(false);
         }
+        
         else {
             returnMessage.setText("bad password or username");
             returnMessage.setForeground(Color.red);
         }
+        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
@@ -186,7 +194,6 @@ public class LoginPage extends javax.swing.JFrame {
     private void createAFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAFieldActionPerformed
         CreateUser newUser = new CreateUser();
         newUser.setVisible(true);
-        dispose();
     }//GEN-LAST:event_createAFieldActionPerformed
     
     

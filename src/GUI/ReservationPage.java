@@ -5,17 +5,39 @@
  */
 package GUI;
 
+import Files.Reservation;
+import Files.ScaleImage;
+import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author User
  */
 public class ReservationPage extends javax.swing.JFrame {
 
+    Reservation reserve = new Reservation();
+    Files.LoginPage lPage = new Files.LoginPage();
+    SimpleDateFormat format;
+    DateFormat  dateFormat ;
+    String userName;
+    ScaleImage sImage = new ScaleImage();
     /**
      * Creates new form ReservationPage
      */
     public ReservationPage() {
         initComponents();
+        profileImage();
+    }
+    private void profileImage(){
+        String imagePath = "/image/login.png";
+        profileLabel.setIcon(sImage.scaledImage(profileLabel, imagePath));
     }
 
     /**
@@ -29,10 +51,18 @@ public class ReservationPage extends javax.swing.JFrame {
 
         profile = new javax.swing.JButton();
         logOut = new javax.swing.JButton();
-        checkIn = new javax.swing.JButton();
-        checkInList = new java.awt.List();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableField = new javax.swing.JTable();
+        updateButton = new javax.swing.JButton();
+        profileLabel = new javax.swing.JLabel();
+        reserveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         profile.setText("Profile");
         profile.addActionListener(new java.awt.event.ActionListener() {
@@ -42,38 +72,95 @@ public class ReservationPage extends javax.swing.JFrame {
         });
 
         logOut.setText("LogOut");
+        logOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutActionPerformed(evt);
+            }
+        });
 
-        checkIn.setText("checkIn");
+        TableField.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Reserve-ID", "Check-In", "Check-Out", "Total", "Payment-status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(TableField);
+        if (TableField.getColumnModel().getColumnCount() > 0) {
+            TableField.getColumnModel().getColumn(0).setResizable(false);
+            TableField.getColumnModel().getColumn(1).setResizable(false);
+            TableField.getColumnModel().getColumn(2).setResizable(false);
+            TableField.getColumnModel().getColumn(3).setResizable(false);
+            TableField.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        reserveButton.setText("reserve room");
+        reserveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reserveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(checkInList, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 351, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(logOut)
-                    .addComponent(profile)
-                    .addComponent(checkIn))
-                .addGap(34, 34, 34))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(logOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(reserveButton))
+                            .addComponent(profile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(profileLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(profile)
-                        .addGap(24, 24, 24)
-                        .addComponent(logOut)
-                        .addGap(30, 30, 30)
-                        .addComponent(checkIn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(checkInList, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addComponent(profileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(profile)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(logOut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(reserveButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
         );
 
         pack();
@@ -82,6 +169,64 @@ public class ReservationPage extends javax.swing.JFrame {
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_profileActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel)TableField.getModel();
+        tblModel.setRowCount(0);
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        ResultSet rs = reserve.userData();
+        try {
+            while(rs.next()){
+                String reserve_ID = Integer.toString(rs.getInt("RESERVEID"));
+                String check_In = dateFormat.format(rs.getDate("CHECKIN_DATE"));
+                String checkOut = dateFormat.format(rs.getDate("CHECKOUT_DATE"));
+                String total = Integer.toString(rs.getInt("AMOUNT"));
+                String payment = rs.getString("PAYMENT_STATUES");
+                
+                String userData[] = new String[]{reserve_ID, check_In, checkOut, total, payment};
+                tblModel.addRow(userData);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updateButtonActionPerformed
+    
+    public void getuserName(String userName){
+        this.userName = userName;
+        reserve.getuserName(userName);
+    }
+    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        DefaultTableModel tblModel = (DefaultTableModel)TableField.getModel();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        ResultSet rs = reserve.userData();
+        try {
+            while(rs.next()){
+                String reserve_ID = Integer.toString(rs.getInt("RESERVEID"));
+                String check_In = dateFormat.format(rs.getDate("CHECKIN_DATE"));
+                String checkOut = dateFormat.format(rs.getDate("CHECKOUT_DATE"));
+                String total = Integer.toString(rs.getInt("AMOUNT"));
+                String payment = rs.getString("PAYMENT_STATUES");
+                
+                String userData[] = new String[]{reserve_ID, check_In, checkOut, total, payment};
+                tblModel.addRow(userData);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
+        LoginPage page = new LoginPage();
+        page.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logOutActionPerformed
+
+    private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
+        AddReservePage reserveRoom = new AddReservePage();
+        reserveRoom.getuserName(userName);
+        reserveRoom.setVisible(true);
+    }//GEN-LAST:event_reserveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,9 +264,12 @@ public class ReservationPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton checkIn;
-    private java.awt.List checkInList;
+    private javax.swing.JTable TableField;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logOut;
     private javax.swing.JButton profile;
+    private javax.swing.JLabel profileLabel;
+    private javax.swing.JButton reserveButton;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }

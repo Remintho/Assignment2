@@ -6,7 +6,7 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.event.FocusEvent;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -14,18 +14,15 @@ import java.awt.event.FocusEvent;
  */
 public class CreateUser extends javax.swing.JFrame {
 
+    Files.LoginPage lPage = new Files.LoginPage();
+    Files.Registration register = new Files.Registration();
     /**
      * Creates new form CreateUser
      */
     public CreateUser() {
         initComponents();
     }
-    public void f(){
-        FocusEvent evt = null;
-        
-        
-    }
-    
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,15 +36,16 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        fNameField = new javax.swing.JTextField();
-        lNameField = new javax.swing.JTextField();
-        EmailField = new javax.swing.JTextField();
+        fnField = new javax.swing.JTextField();
+        lnField = new javax.swing.JTextField();
+        emailField = new javax.swing.JTextField();
         userNField = new javax.swing.JTextField();
         pwField = new javax.swing.JTextField();
         ageField = new javax.swing.JTextField();
-        pNField = new javax.swing.JTextField();
+        phField = new javax.swing.JTextField();
         createButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        returnMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,11 +56,11 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel3.setText("       Register");
 
-        fNameField.setText("First Name");
+        fnField.setText("First Name");
 
-        lNameField.setText("Last Name");
+        lnField.setText("Last Name");
 
-        EmailField.setText("Email ");
+        emailField.setText("Email ");
 
         userNField.setText("User Name");
 
@@ -70,9 +68,14 @@ public class CreateUser extends javax.swing.JFrame {
 
         ageField.setText("Age");
 
-        pNField.setText("Phone Number");
+        phField.setText("Phone Number");
 
         createButton.setText("Create");
+        createButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonActionPerformed(evt);
+            }
+        });
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -100,18 +103,27 @@ public class CreateUser extends javax.swing.JFrame {
                         .addGap(181, 181, 181)
                         .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(EmailField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(userNField)
-                        .addComponent(pwField)
+                        .addComponent(emailField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(fNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(fnField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(ageField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(45, 45, 45)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lNameField)
-                                .addComponent(pNField, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)))))
+                                .addComponent(lnField)
+                                .addComponent(phField, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)))))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(221, 221, 221)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pwField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userNField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(returnMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,33 +136,59 @@ public class CreateUser extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(fNameField))
+                    .addComponent(lnField, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(fnField))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(ageField, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(pNField))
+                    .addComponent(phField))
                 .addGap(28, 28, 28)
-                .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(userNField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pwField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(returnMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(createButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        LoginPage page = new LoginPage();
-        page.setVisible(true);
-        this.dispose();
+        dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        while(true){
+           returnMessage.setText(register.checkInfo(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText()));
+           returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
+           returnMessage.setForeground(Color.red);
+           break; 
+        }
+        if(fnField.getText().trim().equals("") || lnField.getText().trim().equals("") || ageField.getText().trim().equals("") || phField.getText().trim().equals("") || emailField.getText().trim().equals("") || userNField.getText().trim().equals( "") || pwField.getText().trim().equals("")){
+            returnMessage.setText("Please fill the empty field");
+            returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
+            returnMessage.setForeground(Color.red);
+        }
+        else if(lPage.checkUserName(userNField.getText())){
+            returnMessage.setText("This username is used");
+            returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
+            returnMessage.setForeground(Color.red);
+        }
+        else if(register.check(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText())==true){
+            register.adduser(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText());
+            lPage.addLogin(userNField.getText().replaceAll("\\s+",""), pwField.getText());
+            LoginPage page = new LoginPage();
+            page.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_createButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,17 +226,18 @@ public class CreateUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField EmailField;
     private javax.swing.JTextField ageField;
     private javax.swing.JButton backButton;
     private javax.swing.JButton createButton;
-    private javax.swing.JTextField fNameField;
+    private javax.swing.JTextField emailField;
+    private javax.swing.JTextField fnField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField lNameField;
-    private javax.swing.JTextField pNField;
+    private javax.swing.JTextField lnField;
+    private javax.swing.JTextField phField;
     private javax.swing.JTextField pwField;
+    private javax.swing.JLabel returnMessage;
     private javax.swing.JTextField userNField;
     // End of variables declaration//GEN-END:variables
 }

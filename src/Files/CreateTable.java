@@ -35,7 +35,8 @@ public class CreateTable {
                     + "EMAIL VARCHAR(50), "
                     + "PHONE VARCHAR(20), "
                     + "PRIMARY KEY (USERID))");
-            this.statement.addBatch("INSERT INTO CUSTOMER VALUES( 101 , 'logan ', 'dacey ', 32,'logandacey@armspy.com', '0219737437'), \n"
+            this.statement.addBatch("INSERT INTO CUSTOMER VALUES( 100, 'admin ', 'admin ', 100,'amdin@hotel.com', '0923234234'), \n"
+                    + "(101 , 'logan ', 'dacey ', 32,'logandacey@armspy.com', '0219737437'), \n"
                     + "( 102 , 'jonathan ', 'monsoor ', 61,'jonathanmonsoor@teleworm.us', '0221949418'), \n"
                     + "( 103 , 'zachary ', 'timms ', 20,'zacharytimms@telewarms.us', '0277472236'), \n"
                     + "( 104 , 'molly ', 'kennion ', 41,'mollykennion@yahoo.com', '0267555019'), \n"
@@ -57,13 +58,14 @@ public class CreateTable {
                     + "USERNAME VARCHAR(20), "
                     + "PASSWORD VARCHAR(20), "
                     + "FOREIGN KEY (USERID) REFERENCES CUSTOMER(USERID))");
-            this.statement.addBatch("INSERT INTO GUEST VALUES(101,'home1989','dacey321'), \n"
+            this.statement.addBatch("INSERT INTO GUEST VALUES(100, 'admin', 'admin'), \n"
+                    + "(101,'home1989','dacey321'), \n"
                     + "(102,'thatera1960 ','monsoor1960 '), \n"
                     + "(103,'panduch', 'timms2001'), \n"
                     + "(104,'pook1980', 'molly321'), \n"
                     + "(105,'womic1951', 'hudson987'), \n"
                     + "(106,'ellostaid', 'jermey5987'), \n"
-                    + "(107,'hicend', 'lolatext'), \n"
+                    + "(107,'hicend', 'loltext'), \n"
                     + "(108,'racb1995', 'finnhart342')");
             this.statement.executeBatch();
         } catch (SQLException ex) {
