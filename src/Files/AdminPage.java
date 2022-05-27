@@ -102,4 +102,24 @@ public class AdminPage {
             System.out.println(ex.getMessage());
         }
     }
+    
+    
+    public void deleteRecord(String userId){
+         int userID;
+        try {
+            userID = Integer.parseInt(userId.trim());  
+        }
+        catch (NumberFormatException e) {
+            userID = 0;
+        }
+        try {
+            this.statement = conn.createStatement();
+            this.statement.addBatch("DELETE FROM GUEST WHERE USERID = "+userID+"");
+            this.statement.addBatch("DELETE FROM RESERVATION WHERE USERID = "+userID+"");
+            this.statement.addBatch("DELETE FROM CUSTOMER WHERE USERID = "+userID+"");
+            this.statement.executeBatch();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

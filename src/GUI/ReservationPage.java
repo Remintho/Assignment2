@@ -7,7 +7,6 @@ package GUI;
 
 import Files.Reservation;
 import Files.ScaleImage;
-import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -26,6 +25,7 @@ public class ReservationPage extends javax.swing.JFrame {
     Files.LoginPage lPage = new Files.LoginPage();
     SimpleDateFormat format;
     DateFormat  dateFormat ;
+    int userID;
     String userName;
     ScaleImage sImage = new ScaleImage();
     /**
@@ -223,8 +223,9 @@ public class ReservationPage extends javax.swing.JFrame {
     }//GEN-LAST:event_logOutActionPerformed
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
+        userID = reserve.getIDLogin(userName);
         AddReservePage reserveRoom = new AddReservePage();
-        reserveRoom.getuserName(userName);
+        reserveRoom.getUserID(userID);
         reserveRoom.setVisible(true);
     }//GEN-LAST:event_reserveButtonActionPerformed
 

@@ -1,7 +1,7 @@
-Fri May 20 12:03:49 NZST 2022 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Mon May 23 14:11:36 NZST 2022 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Fri May 20 12:03:50 NZST 2022:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0180-dec6-ff34-00004294ddde 
+Mon May 23 14:11:36 NZST 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0180-eeaf-0ebc-00004294ddde 
 on database directory C:\Users\User\OneDrive\Documents\Aut assignment\Year 2\semster 1\programming\Assignment2\HotelDB with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
 Loaded from file:/C:/db-derby-10.14.2.0-bin/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,67 +12,73 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\User\OneDrive\Documents\Aut assignment\Year 2\semster 1\programming\Assignment2
 Database Class Loader started - derby.database.classpath=''
-Fri May 20 15:01:07 NZST 2022 Thread[DRDAConnThread_3,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-4471791301986550389{286}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
-Fri May 20 15:01:07 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Mon May 23 15:58:46 NZST 2022 Thread[DRDAConnThread_13,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-794883680952604401{16}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Mon May 23 15:58:46 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.invalidValue(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.parseCLSQRY(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Fri May 20 15:01:07 NZST 2022 Thread[DRDAConnThread_3,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-4471791301986550389{286}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
-Fri May 20 15:01:07 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Mon May 23 15:58:46 NZST 2022 Thread[DRDAConnThread_13,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-794883680952604401{16}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Mon May 23 15:58:46 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.invalidValue(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.parseCLSQRY(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Fri May 20 15:38:26 NZST 2022 Thread[DRDAConnThread_4,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-580399748959495191{343}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
-Fri May 20 15:38:26 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Mon May 23 16:33:24 NZST 2022 Thread[DRDAConnThread_27,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-520727053634328887{61}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Mon May 23 16:33:24 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.invalidValue(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.parseCLSQRY(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Fri May 20 15:38:26 NZST 2022 Thread[DRDAConnThread_4,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-580399748959495191{343}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
-Fri May 20 15:38:26 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Mon May 23 16:33:24 NZST 2022 Thread[DRDAConnThread_27,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-520727053634328887{61}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Mon May 23 16:33:24 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.invalidValue(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.parseCLSQRY(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Fri May 20 16:19:39 NZST 2022 Thread[DRDAConnThread_30,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-651894393041543955{354}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
-Fri May 20 16:19:39 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Tue May 24 18:12:30 NZST 2022 Thread[DRDAConnThread_17,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-1084239956916726237{200}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Tue May 24 18:12:30 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.invalidValue(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.parseCLSQRY(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Fri May 20 16:19:39 NZST 2022 Thread[DRDAConnThread_30,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-651894393041543955{354}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
-Fri May 20 16:19:39 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Tue May 24 18:12:30 NZST 2022 Thread[DRDAConnThread_17,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-1084239956916726237{200}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Tue May 24 18:12:30 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.invalidValue(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.parseCLSQRY(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Sat May 21 17:13:35 NZST 2022 Thread[DRDAConnThread_31,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-1011900888164824516{544}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
-Sat May 21 17:13:35 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Tue May 24 18:23:53 NZST 2022 Thread[DRDAConnThread_3,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-593347597532654440{212}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Tue May 24 18:23:53 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.invalidValue(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.parseCLSQRY(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
-Sat May 21 17:13:35 NZST 2022 Thread[DRDAConnThread_31,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-1011900888164824516{544}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
-Sat May 21 17:13:35 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Tue May 24 18:23:53 NZST 2022 Thread[DRDAConnThread_3,5,main] (DATABASE = HotelDB), (DRDAID = ????????.????-593347597532654440{212}), Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
+Tue May 24 18:23:53 NZST 2022 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 2113; Error Code Value = 14. Plaintext connection attempt from an SSL enabled client?
 	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.invalidValue(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.parseCLSQRY(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.processCommands(Unknown Source)
 	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+----------------------------------------------------------------
+Tue May 24 22:55:05 NZST 2022: Shutting down Derby engine
+----------------------------------------------------------------
+Tue May 24 22:55:05 NZST 2022:
+Shutting down instance a816c00e-0180-eeaf-0ebc-00004294ddde on database directory C:\Users\User\OneDrive\Documents\Aut assignment\Year 2\semster 1\programming\Assignment2\HotelDB with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+----------------------------------------------------------------

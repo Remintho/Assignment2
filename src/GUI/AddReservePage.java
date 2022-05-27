@@ -19,12 +19,15 @@ public class AddReservePage extends javax.swing.JFrame {
     Reservation reserve = new Reservation();
     Files.LoginPage lPage = new Files.LoginPage();
     SimpleDateFormat format;
-    String userName;
+    int userID;
     /**
      * Creates new form AddReservePage
      */
     public AddReservePage() {
         initComponents();
+    }
+    public void getUserID(int userID) {
+        this.userID = userID;
     }
 
     /**
@@ -210,11 +213,7 @@ public class AddReservePage extends javax.swing.JFrame {
             roomNumber.addItem((Integer) (value));
         }
     }//GEN-LAST:event_tableMenuMouseClicked
-    
-    public void getuserName(String userName){
-        this.userName = userName;
-        reserve.getuserName(userName);
-    }
+
     
     private void bedTypeFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bedTypeFieldMouseClicked
         bedTypeField.setEditable(false);
@@ -245,7 +244,7 @@ public class AddReservePage extends javax.swing.JFrame {
             format = new SimpleDateFormat("yyyy-MM-dd");
             String check_In = format.format(checkInDate.getDate());
             String checkOut = format.format(checkOutDate.getDate());
-            reserve.addReserve(roomNumber.getSelectedItem().toString(), check_In, checkOut, PAYMENT_STATUES);
+            reserve.addReserve(userID, roomNumber.getSelectedItem().toString(), check_In, checkOut, PAYMENT_STATUES);
             returnLabel.setText("you've successfully booked a room");
             returnLabel.setForeground(Color.blue);
             checkInDate.setDate(null);

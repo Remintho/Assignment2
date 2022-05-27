@@ -47,7 +47,12 @@ public class CreateUser extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         returnMessage = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("______________________________");
 
@@ -57,18 +62,74 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel3.setText("       Register");
 
         fnField.setText("First Name");
+        fnField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fnFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fnFieldFocusLost(evt);
+            }
+        });
 
         lnField.setText("Last Name");
+        lnField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                lnFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                lnFieldFocusLost(evt);
+            }
+        });
 
-        emailField.setText("Email ");
+        emailField.setText("Email");
+        emailField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                emailFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailFieldFocusLost(evt);
+            }
+        });
 
         userNField.setText("User Name");
+        userNField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userNFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                userNFieldFocusLost(evt);
+            }
+        });
 
         pwField.setText("Password");
+        pwField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pwFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pwFieldFocusLost(evt);
+            }
+        });
 
         ageField.setText("Age");
+        ageField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ageFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ageFieldFocusLost(evt);
+            }
+        });
 
         phField.setText("Phone Number");
+        phField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                phFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                phFieldFocusLost(evt);
+            }
+        });
 
         createButton.setText("Create");
         createButton.addActionListener(new java.awt.event.ActionListener() {
@@ -184,12 +245,119 @@ public class CreateUser extends javax.swing.JFrame {
         else if(register.check(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText())==true){
             register.adduser(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText());
             lPage.addLogin(userNField.getText().replaceAll("\\s+",""), pwField.getText());
-            LoginPage page = new LoginPage();
-            page.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_createButtonActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        fnField.setForeground(Color.gray);
+        lnField.setForeground(Color.gray);
+        ageField.setForeground(Color.gray);
+        emailField.setForeground(Color.gray);
+        phField.setForeground(Color.gray);
+        userNField.setForeground(Color.gray);
+        pwField.setForeground(Color.gray);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void fnFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fnFieldFocusGained
+        if(fnField.getText().equalsIgnoreCase("First Name")){
+            fnField.setText("");
+            fnField.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_fnFieldFocusGained
+
+    private void fnFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fnFieldFocusLost
+        if(fnField.getText().isEmpty()){
+            fnField.setText("First Name");
+            fnField.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_fnFieldFocusLost
+
+    private void lnFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lnFieldFocusGained
+        if(lnField.getText().equalsIgnoreCase("Last Name")){
+            lnField.setText("");
+            lnField.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_lnFieldFocusGained
+
+    private void lnFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_lnFieldFocusLost
+        if(lnField.getText().isEmpty()){
+            lnField.setText("Last Name");
+            lnField.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_lnFieldFocusLost
+
+    private void ageFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ageFieldFocusGained
+        if(ageField.getText().equalsIgnoreCase("Age")){
+            ageField.setText("");
+            ageField.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_ageFieldFocusGained
+
+    private void ageFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ageFieldFocusLost
+        if(ageField.getText().isEmpty()){
+            ageField.setText("Age");
+            ageField.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_ageFieldFocusLost
+
+    private void phFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phFieldFocusGained
+        if(phField.getText().equalsIgnoreCase("Phone Number")){
+            phField.setText("");
+            phField.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_phFieldFocusGained
+
+    private void phFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phFieldFocusLost
+        if(phField.getText().isEmpty()){
+            phField.setText("Phone Number");
+            phField.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_phFieldFocusLost
+
+    private void emailFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFieldFocusGained
+        if(emailField.getText().equalsIgnoreCase("Email")){
+            emailField.setText("");
+            emailField.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_emailFieldFocusGained
+
+    private void emailFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailFieldFocusLost
+        if(emailField.getText().isEmpty()){
+            emailField.setText("Email");
+            emailField.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_emailFieldFocusLost
+
+    private void userNFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNFieldFocusGained
+        if(userNField.getText().equalsIgnoreCase("User Name")){
+            userNField.setText("");
+            userNField.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_userNFieldFocusGained
+
+    private void userNFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNFieldFocusLost
+        if(userNField.getText().isEmpty()){
+            userNField.setText("User Name");
+            userNField.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_userNFieldFocusLost
+
+    private void pwFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pwFieldFocusGained
+        if(pwField.getText().equalsIgnoreCase("Password")){
+            pwField.setText("");
+            pwField.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_pwFieldFocusGained
+
+    private void pwFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pwFieldFocusLost
+        if(pwField.getText().isEmpty()){
+            pwField.setText("Password");
+            pwField.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_pwFieldFocusLost
+
+    
     /**
      * @param args the command line arguments
      */

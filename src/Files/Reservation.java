@@ -99,12 +99,11 @@ public class Reservation {
     }
     
     
-    public void addReserve(String ROOM_NUMBER, String CHECKIN_DATE, String CHECKOUT_DATE, String PAYMENT_STATUES){
+    public void addReserve(int userID, String ROOM_NUMBER, String CHECKIN_DATE, String CHECKOUT_DATE, String PAYMENT_STATUES){
         Date checkin = Date.valueOf(CHECKIN_DATE);
         Date checkOut = Date.valueOf(CHECKOUT_DATE);
         int room_Number = Integer.parseInt(ROOM_NUMBER);
         this.roomNumber = room_Number;
-        int userID = getIDLogin(userName);
         try {
             this.statement = conn.createStatement();
             this.statement.addBatch("INSERT INTO RESERVATION (RESERVEID, USERID, ROOM_NUMBER, CHECKIN_DATE, CHECKOUT_DATE, AMOUNT, PAYMENT_STATUES) VALUES("+getLastReserveID()+",(SELECT USERID FROM CUSTOMER WHERE USERID ="+userID+"), "+room_Number+", '"+checkin+"', '"+checkOut+"', "+getAmount(checkin, checkOut)+", '"+PAYMENT_STATUES+"')");
