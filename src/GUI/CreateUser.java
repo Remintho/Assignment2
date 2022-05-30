@@ -226,21 +226,21 @@ public class CreateUser extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        while(true){
+        while(register.check(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText())==false ){
            returnMessage.setText(register.checkInfo(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText()));
            returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
-           returnMessage.setForeground(Color.red);
-           break; 
+           returnMessage.setForeground(Color.red); 
+        break;
         }
-        if(fnField.getText().trim().equals("") || lnField.getText().trim().equals("") || ageField.getText().trim().equals("") || phField.getText().trim().equals("") || emailField.getText().trim().equals("") || userNField.getText().trim().equals( "") || pwField.getText().trim().equals("")){
-            returnMessage.setText("Please fill the empty field");
-            returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
-            returnMessage.setForeground(Color.red);
-        }
-        else if(lPage.checkUserName(userNField.getText())){
+        if(lPage.checkUserName(userNField.getText()) || "User Name".equalsIgnoreCase(userNField.getText())){
             returnMessage.setText("This username is used");
             returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
             returnMessage.setForeground(Color.red);
+        }
+        else if("Password".equalsIgnoreCase(pwField.getText())){
+            returnMessage.setText("Please enter a password");
+            returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
+            returnMessage.setForeground(Color.red);     
         }
         else if(register.check(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText())==true){
             register.adduser(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText());

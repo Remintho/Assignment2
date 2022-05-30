@@ -10,8 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -20,7 +19,7 @@ import java.util.logging.Logger;
 public final class DBManager {
     private static final String USER_NAME = "hotel"; 
     private static final String PASSWORD = "hotel"; 
-    private static final String URL = "jdbc:derby://localhost:1527/HotelDB";  
+    private static final String URL = "jdbc:derby:HotelDB;create=true";  
     
     
     Connection conn;
@@ -36,6 +35,7 @@ public final class DBManager {
     public void establishConn(){
         if(conn == null){
             try {
+//                derby.drda.startNetworkServer=true;
                 conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
                 System.out.println(URL+" connection successfull....");
             } catch (SQLException ex) {

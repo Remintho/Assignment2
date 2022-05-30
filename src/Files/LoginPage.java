@@ -6,6 +6,7 @@
 package Files;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,7 +20,8 @@ public class LoginPage {
     private final DBManager dbManager;
     private final Connection conn;
     private Statement statement;
-    
+    private PreparedStatement prepStatement;
+
     public LoginPage(){
        dbManager = new DBManager();
        conn = dbManager.getConnection();
@@ -30,23 +32,49 @@ public class LoginPage {
        
         int lastID = 0;
         try {
-             rs = this.statement.executeQuery("SELECT MAX(USERID)"
-                + "FROM CUSTOMER");
-             if(rs.next()){
+            String sql = "SELECT MAX(USERID)"
+                + "FROM CUSTOMER";
+            this.prepStatement = conn.prepareStatement(sql);
+            rs = this.prepStatement.executeQuery();
+            if(rs.next()){
                 lastID = (((Number)rs.getObject(1)).intValue());
                 
-             }
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return lastID; 
     }
     
-    public void addLogin(String uN, String pW){
+    public ResultSet getLogin(int userID){
+        ResultSet rs = null;
+        try {
+            String dataQuery = "SELECT USERNAME, PASSWORD FROM GUEST WHERE USERID = "+userID+"";
+            this.statement = conn.createStatement();
+            rs = this.statement.executeQuery(dataQuery);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return rs;
+        
+    }
+    
+    public void updateLogin(int userID, String uN, String pW){
         try {
             this.statement = conn.createStatement();
-            this.statement.addBatch("INSERT INTO GUEST (USERID, USERNAME, PASSWORD)"
-                    + "VALUES((SELECT USERID FROM CUSTOMER WHERE USERID ="+getLastID()+"), '"+uN+"', '"+pW+"')");
+            this.statement.addBatch("UPDATE GUEST SET USERNAME = '"+uN+"', PASSWORD = '"+pW+"'  WHERE USERID = "+userID+"");
+            this.statement.executeBatch();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public void addLogin(String uN, String pW){
+        try {
+            String sql = "INSERT INTO GUEST (USERID, USERNAME, PASSWORD)"
+                    + "VALUES((SELECT USERID FROM CUSTOMER WHERE USERID ="+getLastID()+"), '"+uN+"', '"+pW+"')";
+            this.statement = conn.createStatement();
+            this.statement.addBatch(sql);
         this.statement.executeBatch();
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
@@ -59,8 +87,9 @@ public class LoginPage {
     public boolean checkLogin(String username, String password){
         ResultSet rs;
         try {
-            this.statement = conn.createStatement();
-            rs = this.statement.executeQuery("SELECT * FROM GUEST WHERE USERNAME ='"+username+"' AND PASSWORD = '"+password+"' ");
+            String sql = "SELECT * FROM GUEST WHERE USERNAME ='"+username+"' AND PASSWORD = '"+password+"' ";
+            this.prepStatement = conn.prepareStatement(sql);
+            rs = this.prepStatement.executeQuery();
                 if(rs.next()){
                     rs.close();
                     return true;     
@@ -72,17 +101,36 @@ public class LoginPage {
             System.out.println(ex.getMessage());
         }
         try {
-            this.statement.close();
+            this.prepStatement.close();
             this.conn.close();
         } catch (SQLException e){}
         return false;
     }
     
+    public String getUserName(int userID){
+        ResultSet rs;
+        String userName = "";
+        try {
+            String dataQuery = "SELECT USERNAME FROM GUEST WHERE USERID = "+userID+"";
+            this.statement = conn.createStatement();
+            rs = this.statement.executeQuery(dataQuery);
+            while(rs.next())
+            {
+                userName = rs.getString("USERNAME");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return userName;  
+    }
+    
     public boolean checkUserName(String username){
         ResultSet rs;
         try {
-            this.statement = conn.createStatement();
-            rs = this.statement.executeQuery("SELECT USERNAME FROM GUEST WHERE USERNAME ='"+username+"'");
+            String sql = "SELECT USERNAME FROM GUEST WHERE USERNAME ='"+username+"'";
+            this.prepStatement = conn.prepareStatement(sql);
+            rs = this.prepStatement.executeQuery();
                 if(rs.next()){
                     rs.close();
                     return true;     
@@ -95,7 +143,7 @@ public class LoginPage {
             System.out.println(ex.getMessage());
         }
         try {
-            this.statement.close();
+            this.prepStatement.close();
             this.conn.close();
         } catch (SQLException e){}
         

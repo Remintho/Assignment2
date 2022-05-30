@@ -10,8 +10,6 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -25,7 +23,6 @@ public class Reservation {
     private final DBManager dbManager;
     private final Connection conn;
     private Statement statement;
-    DateFormat  dateFormat ;
     LoginPage lPage = new LoginPage();
     int roomNumber;
     String userName;
@@ -113,19 +110,7 @@ public class Reservation {
         }
     }
     
-    public ResultSet userData(){
-        ResultSet rs = null;
-        int userID = getIDLogin(userName);
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            String dataQuery = "SELECT RESERVEID, CHECKIN_DATE, CHECKOUT_DATE, AMOUNT, PAYMENT_STATUES FROM RESERVATION WHERE USERID = "+userID+"";
-            this.statement = conn.createStatement();
-            rs = this.statement.executeQuery(dataQuery);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return rs;
-    }
+  
     
     public ArrayList<Integer> getRoomNumber(String selectedItem){
         ResultSet rs;

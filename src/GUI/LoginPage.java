@@ -18,7 +18,7 @@ public class LoginPage extends javax.swing.JFrame {
     ScaleImage sImage = new ScaleImage();
     Files.LoginPage lPage = new Files.LoginPage();
     Files.Reservation reserve = new Files.Reservation();
-
+    int userID;
     /**
      * Creates new form LoginPage
      */
@@ -161,7 +161,10 @@ public class LoginPage extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    public void getID(int userID){
+        this.userID = userID;
+    }
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String passText = new String(passwordField.getPassword());
         if(passwordField.getPassword().length == 0 || userNameField.getText().trim().equalsIgnoreCase("")){
@@ -194,6 +197,10 @@ public class LoginPage extends javax.swing.JFrame {
     private void createAFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAFieldActionPerformed
         CreateUser newUser = new CreateUser();
         newUser.setVisible(true);
+        userNameField.setText("");
+        passwordField.setText("");
+        returnMessage.setText("");
+                
     }//GEN-LAST:event_createAFieldActionPerformed
     
     
