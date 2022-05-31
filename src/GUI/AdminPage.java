@@ -289,7 +289,6 @@ public class AdminPage extends javax.swing.JFrame {
         tblModel.setRowCount(0);
         
         ResultSet rs = adminPage.searchBy(searchBox.getSelectedIndex(), searchField.getText());
-        System.out.println(rs.toString()+"here ");
         if(rs == null || "".equalsIgnoreCase(rs.toString())){
             returnLabel.setText("Invalid Input or Input is not available");
             returnLabel.setForeground(Color.red);
@@ -334,32 +333,32 @@ public class AdminPage extends javax.swing.JFrame {
             phone = (String) tblModel.getValueAt(i, 5);
         }
         if(userID==null || userID.equalsIgnoreCase("") ){
-            returnLabel.setText("There is no data/vale to be updated");
+            returnLabel.setText("There is no data/values to be updated");
             returnLabel.setForeground(Color.red);
             returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
         else if(fName==null || fName.equalsIgnoreCase("") ){
-            returnLabel.setText("There is no data/vale to be updated");
+            returnLabel.setText("There is no data/value to be updated");
             returnLabel.setForeground(Color.red);
             returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
         else if(lName==null || lName.equalsIgnoreCase("") ){
-            returnLabel.setText("There is no data/vale to be updated");
+            returnLabel.setText("There is no data/value to be updated");
             returnLabel.setForeground(Color.red);
             returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
         else if(age==null || age.equalsIgnoreCase("") ){
-            returnLabel.setText("There is no data/vale to be updated");
+            returnLabel.setText("There is no data/value to be updated");
             returnLabel.setForeground(Color.red);
             returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
         else if(email==null || email.equalsIgnoreCase("") ){
-            returnLabel.setText("There is no data/vale to be updated");
+            returnLabel.setText("There is no data/value to be updated");
             returnLabel.setForeground(Color.red);
             returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
         else if(phone==null || phone.equalsIgnoreCase("") ){
-            returnLabel.setText("There is no data/vale to be updated");
+            returnLabel.setText("There is no data/value to be updated");
             returnLabel.setForeground(Color.red);
             returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
@@ -443,7 +442,7 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_roomManagActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        if(tableField.getValueAt(tableField.getSelectedRow(), 0) == null || "".equals(tableField.getValueAt(tableField.getSelectedRow(), 0))){
+        if(tableField.getSelectedRow()==-1 || tableField.getValueAt(tableField.getSelectedRow(), 0) == null || "".equals(tableField.getValueAt(tableField.getSelectedRow(), 0))){
             returnLabel.setText("There is no data/vale selected");
             returnLabel.setForeground(Color.red);
             returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -453,9 +452,9 @@ public class AdminPage extends javax.swing.JFrame {
             int reply = JOptionPane.showConfirmDialog(null, "are you sure, you want to delete selected row. All data will be lost and cant be retrieved", "confirm", JOptionPane.YES_NO_OPTION);
             if(reply == JOptionPane.YES_OPTION){
                 adminPage.deleteRecord(tableField.getValueAt(tableField.getSelectedRow(), 0).toString());
-            }
-            DefaultTableModel tblModel = (DefaultTableModel)tableField.getModel();
-            tblModel.setRowCount(0);
+                DefaultTableModel tblModel = (DefaultTableModel)tableField.getModel();
+                tblModel.setRowCount(0);
+            }  
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
