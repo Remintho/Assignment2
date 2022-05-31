@@ -336,6 +336,8 @@ public class RoomManag extends javax.swing.JFrame {
             roomManag.dataChange("DOUBLE", doubleField.getText());
             roomManag.dataChange("TRIPLE", tripleField.getText());
             roomManag.dataChange("QUAD", quadField.getText());
+            DefaultTableModel tblModel = (DefaultTableModel)tableField.getModel();
+            tblModel.setRowCount(0);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -392,6 +394,8 @@ public class RoomManag extends javax.swing.JFrame {
         int reply = JOptionPane.showConfirmDialog(null, "are you sure, you want to delete selected row", "confirm", JOptionPane.YES_NO_OPTION);
         if(reply == JOptionPane.YES_OPTION){
             roomManag.deleteRecord(tableField.getValueAt(tableField.getSelectedRow(), 0).toString());
+            DefaultTableModel tblModel = (DefaultTableModel)tableField.getModel();
+            tblModel.setRowCount(0);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 

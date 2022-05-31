@@ -229,10 +229,10 @@ public class AddReservePage extends javax.swing.JFrame {
         returnLabel. setHorizontalAlignment(SwingConstants. CENTER);
         String PAYMENT_STATUES = " ";
         if(paymentBox.getSelectedIndex()==0){
-            PAYMENT_STATUES = "Payed";
+            PAYMENT_STATUES = "payed";
         }
         else if(paymentBox.getSelectedIndex()==1){
-            PAYMENT_STATUES = "NotPayed";
+            PAYMENT_STATUES = "notpayed";
         }
         if(roomNumber.getSelectedIndex() == -1){
             returnLabel.setText("Please choose bed type then room number");
