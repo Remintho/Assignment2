@@ -149,6 +149,18 @@ public class LoginPage {
         
         return false;
     }
+    public boolean checkUserName(int userID, String user_Name){
+        if(!user_Name.equalsIgnoreCase(getUserName(userID))){
+                if(checkUserName(user_Name) || "User Name".equalsIgnoreCase(user_Name)){
+                   return false; 
+                }
+                else{
+                    return true; 
+                }
+                
+            }
+        return true;
+    }
     
     public static void main(String[] args) {
         LoginPage lp = new LoginPage();

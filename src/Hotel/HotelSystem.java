@@ -180,6 +180,7 @@ public class HotelSystem extends javax.swing.JFrame {
             returnMessage.setForeground(Color.blue);
             ReservationPage reservationPage = new ReservationPage();
             reservationPage.getuserName(userNameField.getText());
+            loginButton.setEnabled(false);
             reservationPage.setVisible(true);
             this.setVisible(false);
         }
@@ -188,7 +189,6 @@ public class HotelSystem extends javax.swing.JFrame {
             returnMessage.setText("bad password or username");
             returnMessage.setForeground(Color.red);
         }
-        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
@@ -200,8 +200,7 @@ public class HotelSystem extends javax.swing.JFrame {
         newUser.setVisible(true);
         userNameField.setText("");
         passwordField.setText("");
-        returnMessage.setText("");
-                
+        returnMessage.setText("");    
     }//GEN-LAST:event_createAFieldActionPerformed
     
     

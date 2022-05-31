@@ -172,19 +172,16 @@ public class ProfilePage extends javax.swing.JFrame {
            returnMessage.setForeground(Color.red);
             break;
         }
-        if(!(userNField.getText().equalsIgnoreCase(logPage.getUserName(userID)))){
-            if(logPage.checkUserName(userNField.getText()) || "User Name".equalsIgnoreCase(userNField.getText())){
+        if(logPage.checkUserName(userID, userNField.getText())==false){
             returnMessage.setText("This username is used");
             returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
             returnMessage.setForeground(Color.red);
-            }
         }
         else if("Password".equalsIgnoreCase(pwField.getText())){
             returnMessage.setText("Please enter a password");
             returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
             returnMessage.setForeground(Color.red);     
         }
-        
         else if(register.check(fNameField.getText(), lNameField.getText(), ageField.getText(), pNField.getText(), EmailField.getText())==true){
             int reply = JOptionPane.showConfirmDialog(null, "All data that has been altered will be lost and cant be retrieved after this update", "confirm", JOptionPane.YES_NO_OPTION);
             if(reply == JOptionPane.YES_OPTION){
