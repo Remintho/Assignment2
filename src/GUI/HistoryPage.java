@@ -171,6 +171,7 @@ public class HistoryPage extends javax.swing.JFrame {
             PaymentPage payPage = new PaymentPage();
             payPage.getReserveID(reserveID);
             payPage.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_payButtonActionPerformed
 
