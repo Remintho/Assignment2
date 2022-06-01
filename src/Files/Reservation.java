@@ -22,6 +22,8 @@ import java.util.ArrayList;
  * @author User
  */
 public class Reservation {
+
+   
     private final DBManager dbManager;
     private final Connection conn;
     private Statement statement;
@@ -42,17 +44,34 @@ public class Reservation {
        conn = dbManager.getConnection();
     }
     
-    
+    /**
+     * @param userName
+     */
     public void getuserName(String userName){
         this.userName = userName;
     }
   
+     /**
+     * @return the checkOut
+     */
+    public String getCheckOut() {
+        return checkOut;
+    }
+
+    /**
+     * @return the checkIn
+     */
+    public String getCheckIn() {
+        return checkIn;
+    }
+    
     //get last reserve ID then add 1 to get new reserve ID
     public int getLastReserveID(){
         ResultSet rs;
        
         int lastID = 0;
         try {
+            this.statement = conn.createStatement();
             rs = this.statement.executeQuery("SELECT MAX(RESERVEID) FROM RESERVATION");
             if(rs.next()){
                 lastID = (((Number)rs.getObject(1)).intValue()) + 1;
@@ -67,11 +86,13 @@ public class Reservation {
     }
     
     //get price of a specific room number
-    public int getPrice(){
+    public int getPrice(int roomNumber){
+       this.roomNumber = roomNumber;
         ResultSet rs;
        
         int price = 0;
         try {
+            this.statement = conn.createStatement();
             rs = this.statement.executeQuery("SELECT PRICE FROM ROOM WHERE ROOM_NUMBER = "+roomNumber+"");
             if(rs.next()){
                 price = (((Number)rs.getObject(1)).intValue());
@@ -92,7 +113,7 @@ public class Reservation {
         bookIn = LocalDate.parse(checkIn.toString(), format);
         bookOut = LocalDate.parse(checkOut.toString(), format);
         long differ = ChronoUnit.DAYS.between(bookIn, bookOut);
-        float price = differ * getPrice();
+        float price = differ * getPrice(roomNumber);
         return price;
         
         //the end
@@ -164,7 +185,7 @@ public class Reservation {
     public boolean convertCheckIn(String checkIn) {
         
         this.checkIn = checkIn;
-         format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         bookIn = LocalDate.parse(checkIn, format);
         return compareTodaysDate(todaysDate,bookIn) == true;
 
@@ -233,6 +254,5 @@ public class Reservation {
         //the end
     }
 
-    
     //the end of the class
 }

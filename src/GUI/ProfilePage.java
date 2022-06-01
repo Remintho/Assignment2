@@ -183,7 +183,8 @@ public class ProfilePage extends javax.swing.JFrame {
             returnMessage.setForeground(Color.red);     
         }
         else if(register.check(fNameField.getText(), lNameField.getText(), ageField.getText(), pNField.getText(), EmailField.getText())==true){
-            int reply = JOptionPane.showConfirmDialog(null, "All data that has been altered will be lost and cant be retrieved after this update", "confirm", JOptionPane.YES_NO_OPTION);
+            int reply = JOptionPane.showConfirmDialog(null, "All data that has been altered will be lost and cant be retrieved after this update",
+                    "confirm", JOptionPane.YES_NO_OPTION);
             if(reply == JOptionPane.YES_OPTION){
                 register.updateReg(userID, fNameField.getText(), lNameField.getText(), ageField.getText(), EmailField.getText(), pNField.getText());
                 logPage.updateLogin(userID, userNField.getText().replaceAll("\\s+",""), pwField.getText());
@@ -222,10 +223,8 @@ public class ProfilePage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProfilePage().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new ProfilePage().setVisible(true);
         });
     }
 

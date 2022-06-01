@@ -139,10 +139,8 @@ public class AddRoom extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddRoom().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AddRoom().setVisible(true);
         });
     }
 

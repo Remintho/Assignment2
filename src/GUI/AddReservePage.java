@@ -304,10 +304,8 @@ public class AddReservePage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddReservePage().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AddReservePage().setVisible(true);
         });
     }
 

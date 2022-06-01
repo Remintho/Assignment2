@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author User
  */
-public class Report {
+public class Report extends Reservation {
     private final DBManager dbManager;
     private final Connection conn;
     private Statement statement;
@@ -98,15 +98,14 @@ public class Report {
     //get all rooms number of specific bedtype
     public ArrayList<Integer> getRooms(String bedType){
         ResultSet rs;
-        int total = 0;
         ArrayList<Integer> arrList = new ArrayList<>();
         try {
             String dataQuery = "SELECT ROOM_NUMBER FROM ROOM WHERE BED_TYPE = '"+bedType+"'";           
             this.statement = conn.createStatement();
             rs = this.statement.executeQuery(dataQuery);
              while(rs.next()){
-                int roomNumber = rs.getInt("ROOM_NUMBER");
-                arrList.add(roomNumber);
+                int room_Number = rs.getInt("ROOM_NUMBER");
+                arrList.add(room_Number);
              }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -116,8 +115,8 @@ public class Report {
         //the end
     }
     
-    //get all amount thats not paid
-    public int notPaid(String status){
+    //get all amount thats paid and not paid
+    public int getStatus(String status){
         ResultSet rs;
         int total = 0;
         try {
@@ -136,26 +135,6 @@ public class Report {
         //the end
     }
     
-    //get all amount thats paid 
-    public int Paid(String status){
-        ResultSet rs;
-        int total = 0;
-        try {
-            String dataQuery = "SELECT AMOUNT FROM RESERVATION WHERE PAYMENT_STATUES = '"+status+"'";
-            this.statement = conn.createStatement();
-            rs = this.statement.executeQuery(dataQuery);
-            while(rs.next()){
-                int paid = rs.getInt("AMOUNT");
-                total += paid;
-                
-             }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return total;
-        
-        //the end
-    }
 
     //get all customers data 
     public ResultSet getCust(){
@@ -172,6 +151,7 @@ public class Report {
         
         //the end
     }
+    
     
     //get all reservation data 
     public ResultSet getReserve(){
