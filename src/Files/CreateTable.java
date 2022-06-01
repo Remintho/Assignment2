@@ -24,6 +24,7 @@ public class CreateTable {
        conn = dbManager.getConnection();
     }
     
+    //create sutomer table
     public void custTable(){
         try {
             this.statement = conn.createStatement();
@@ -48,8 +49,11 @@ public class CreateTable {
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }
+        
+        // the end
     }
     
+    //create user/guest table 
     public void userTable(){
         try {
             this.statement = conn.createStatement();
@@ -71,9 +75,12 @@ public class CreateTable {
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }
+        
+        //the end
     }
     
-     public void roomTable(){
+    //create room table
+    public void roomTable(){
         try {
             this.statement = conn.createStatement();
             this.statement.addBatch("CREATE TABLE ROOM ("
@@ -103,8 +110,11 @@ public class CreateTable {
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }
+        
+        //the end
     }
     
+    //create reservation table
     public void reservationTable(){
         try {
             this.statement = conn.createStatement();
@@ -130,8 +140,11 @@ public class CreateTable {
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }
+        
+        //the end 
     }
     
+    //main method
     public static void main(String[] args) {
         CreateTable table = new CreateTable();
         table.custTable();
@@ -140,4 +153,6 @@ public class CreateTable {
         table.reservationTable();
     }
     
+    
+    //the end of the class
 }

@@ -26,7 +26,7 @@ public class RoomManag {
     }
     
     
-    
+    //get price of a specific bedtype
     public ResultSet getPrice(String input){
         ResultSet rs = null;
         try {
@@ -36,9 +36,12 @@ public class RoomManag {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return rs;   
+        return rs;
+        
+        //the end
     }
     
+    //search data by  choice number and input String
     public ResultSet searchBy(int choice, String input){
         ResultSet rs = null;
         try {
@@ -84,9 +87,13 @@ public class RoomManag {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return rs; 
+        return rs;
+        
+        //the end
     }
     
+    
+    //change/alter a data by the input bedtype and price
     public void dataChange(String bed_Type, String price){
         int Price;
         try {
@@ -102,8 +109,12 @@ public class RoomManag {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        //the end
     }
     
+    
+    //check if the input room number matches roomnumber
     public boolean checkRoomNumber(String roomNumber){
         ResultSet rs;
         int room_Number;
@@ -133,8 +144,12 @@ public class RoomManag {
         } catch (SQLException e){}
         
         return false;
+        
+        //the end
     }
     
+    
+    //delete record/data using the room number input
     public void deleteRecord(String roomNumber){
          int room_Number;
         try {
@@ -150,8 +165,12 @@ public class RoomManag {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        //the end
     }
     
+    
+    //add new data/record using roomnumber and bedtype
     public void addRecord(String roomNumber, String bedType){
          int room_Number;
          ResultSet rs  = getPrice(bedType);
@@ -167,12 +186,16 @@ public class RoomManag {
                 price = rs.getInt("PRICE");
             }
             this.statement = conn.createStatement();
-            this.statement.addBatch("INSERT INTO ROOM(ROOM_NUMBER, BED_TYPE, PRICE) VALUES("+room_Number+", '"+bedType+"', "+price+")");
+            this.statement.addBatch("INSERT INTO ROOM(ROOM_NUMBER, BED_TYPE, PRICE) "
+                    + "VALUES("+room_Number+", '"+bedType+"', "+price+")");
             this.statement.executeBatch();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        //the end
     }
-    
+   
+    //the end of the class 
 }
 

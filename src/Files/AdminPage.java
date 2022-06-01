@@ -24,6 +24,7 @@ public class AdminPage {
        conn = dbManager.getConnection();
     }
     
+    //search by input number choice and text input of th user 
     public ResultSet searchBy(int choice, String input){
         ResultSet rs = null;
         try {
@@ -80,8 +81,12 @@ public class AdminPage {
             System.out.println(ex.getMessage());
         }
         return rs; 
+        
+        //end of the method
     }
     
+    
+    //change/alter  data/value  upon call using the input
     public void dataChange(String userId, String fName, String lName, String age, String email, String phNumber){
         int Age;
         int userID;
@@ -96,14 +101,21 @@ public class AdminPage {
         }
         try {
             this.statement = conn.createStatement();
-            this.statement.addBatch("UPDATE CUSTOMER SET FNAME = '"+fName+"', LNAME = '"+lName+"', AGE = "+Age+", EMAIL = '"+email+"', PHONE = '"+phNumber+"' WHERE USERID = "+userID+"");
+            this.statement.addBatch("UPDATE CUSTOMER SET FNAME = '"+fName+"', "
+                    + "LNAME = '"+lName+"', "
+                            + "AGE = "+Age+", "
+                                    + "EMAIL = '"+email+"', "
+                                            + "PHONE = '"+phNumber+"' "
+                                                    + "WHERE USERID = "+userID+"");
             this.statement.executeBatch();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+       //end of th method
     }
     
-    
+    //delete all data regarding the userID input upon calling 
     public void deleteRecord(String userId){
          int userID;
         try {
@@ -122,4 +134,7 @@ public class AdminPage {
             System.out.println(ex.getMessage());
         }
     }
+    
+    
+    //the end of the class
 }

@@ -25,6 +25,8 @@ public class Registration {
        conn = dbManager.getConnection();
     }
     
+    
+    //return result of user info that matches UserID
     public ResultSet getUser(int userID){
         ResultSet rs = null;
         try {
@@ -36,8 +38,10 @@ public class Registration {
         }
         return rs;
         
+        //the end
     }
     
+    //upadte user info using the new input
     public void updateReg(int userID, String fName, String lName, String age, String email, String phNumber){
         int Age;
         try {
@@ -48,13 +52,21 @@ public class Registration {
         }
         try {
             this.statement = conn.createStatement();
-            this.statement.addBatch("UPDATE CUSTOMER SET FNAME = '"+fName+"', LNAME = '"+lName+"', AGE = "+Age+", EMAIL = '"+email+"', PHONE = '"+phNumber+"' WHERE USERID = "+userID+"");
+            this.statement.addBatch("UPDATE CUSTOMER SET FNAME = '"+fName+"', "
+                    + "LNAME = '"+lName+"', "
+                            + "AGE = "+Age+", "
+                                    + "EMAIL = '"+email+"', "
+                                            + "PHONE = '"+phNumber+"' "
+                                                    + "WHERE USERID = "+userID+"");
             this.statement.executeBatch();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        //the end
     }
     
+    //get the last customer userID/max number used and add 1 to get new id
     public int getLastID(){
         ResultSet rs;
        
@@ -70,7 +82,11 @@ public class Registration {
             System.out.println(ex.getMessage());
         }
         return lastID; 
+        
+        //the end
     }
+    
+    //add/create  new customer/user info 
     public void adduser(String fName, String lName, String age, String phNumber, String email){
         int Age;
         try {
@@ -87,8 +103,11 @@ public class Registration {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        //the end
     }
     
+    //check for error while the user is typing new value  and returns the error message
     public String checkInfo(String fName, String lName, String age, String phNumber, String email){
         String returnMessage = "";
         int Age;
@@ -101,24 +120,25 @@ public class Registration {
         //First Name
         if((fName.matches("^.*[^a-zA-Z ].*$") || "".equalsIgnoreCase(fName) || "First Name".equalsIgnoreCase(fName)))
         {
-            returnMessage = "invalid firstname";
+            returnMessage = "invalid firstname, please type in alphabetic name eg.JOHN";
             return returnMessage;
         }
         //Last Name
         else if((lName.matches("^.*[^a-zA-Z ].*$") || "".equalsIgnoreCase(lName) || "Last Name".equalsIgnoreCase(lName)))
         {
-            returnMessage = "invalid lastname";
+            returnMessage = "invalid lastname, please type in alphabetic name eg.TOMMY";
             return returnMessage;
         }
         //Age
         
-        else if((Age<=18) || "Age".equalsIgnoreCase(age))
+        else if((Age<=17) || "Age".equalsIgnoreCase(age))
         {
             returnMessage = "must be 18 or older";
             return returnMessage;
         } 
         //Email
-        else if((!email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$") || "".equalsIgnoreCase(email) || "Email".equalsIgnoreCase(email)))
+        else if((!email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$") 
+                || "".equalsIgnoreCase(email) || "Email".equalsIgnoreCase(email)))
         {
             returnMessage = "invalid email, hint: example@gmail.com";
             return returnMessage;
@@ -126,13 +146,16 @@ public class Registration {
         //Phone Number   
         else if((phNumber.matches("^.*[^0-9 ].*$") || "".equalsIgnoreCase(phNumber) || "Phone Number".equalsIgnoreCase(phNumber)))
         {
-            returnMessage = "invalid phone number";
+            returnMessage = "invalid phone number, hint: 022385960";
             return returnMessage;
         }
         
         return returnMessage;
+        
+        //the end
     }
     
+    //check for error while the user is typing new value  and returns boolean result
     public boolean check(String fName, String lName, String age, String phNumber, String email){
         int Age;
         try {
@@ -158,7 +181,8 @@ public class Registration {
             return false;
         } 
         //Email
-        else if((!email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$") || "".equalsIgnoreCase(email) || "Email".equalsIgnoreCase(email)))
+        else if((!email.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$") 
+                || "".equalsIgnoreCase(email) || "Email".equalsIgnoreCase(email)))
         {
             return false;
         }
@@ -169,6 +193,10 @@ public class Registration {
         }
         
         return true;
+        
+        //the end
     }
    
+    
+    //the end of the class
 }

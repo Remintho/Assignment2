@@ -27,6 +27,7 @@ public class LoginPage {
        conn = dbManager.getConnection();
     }
     
+    //get last ID
     public int getLastID(){
         ResultSet rs;
        
@@ -44,8 +45,11 @@ public class LoginPage {
             System.out.println(ex.getMessage());
         }
         return lastID; 
+        
+        //the end
     }
     
+    //return result of username and password info using the userID input
     public ResultSet getLogin(int userID){
         ResultSet rs = null;
         try {
@@ -57,8 +61,10 @@ public class LoginPage {
         }
         return rs;
         
+       //the end 
     }
     
+    //update login using userID, username and password
     public void updateLogin(int userID, String uN, String pW){
         try {
             this.statement = conn.createStatement();
@@ -67,8 +73,11 @@ public class LoginPage {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        //the end
     }
     
+    //add new username and password for new user
     public void addLogin(String uN, String pW){
         try {
             String sql = "INSERT INTO GUEST (USERID, USERNAME, PASSWORD)"
@@ -82,8 +91,14 @@ public class LoginPage {
         try {
             this.statement.close();
             this.conn.close();
-        } catch (SQLException e){}
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        //the end
     }
+    
+    //check login for a match with the input of username and password
     public boolean checkLogin(String username, String password){
         ResultSet rs;
         try {
@@ -103,10 +118,14 @@ public class LoginPage {
         try {
             this.prepStatement.close();
             this.conn.close();
-        } catch (SQLException e){}
+        } catch (SQLException ex){
+        System.out.println(ex.getMessage());}
         return false;
+        
+        //the end
     }
     
+    //return username match using the input userID
     public String getUserName(int userID){
         ResultSet rs;
         String userName = "";
@@ -123,8 +142,11 @@ public class LoginPage {
         }
         
         return userName;  
+        
+        //the end
     }
-    
+
+    //check username for a match and retrun result
     public boolean checkUserName(String username){
         ResultSet rs;
         try {
@@ -145,39 +167,24 @@ public class LoginPage {
         try {
             this.prepStatement.close();
             this.conn.close();
-        } catch (SQLException e){}
+        } catch (SQLException ex){
+        System.out.println(ex.getMessage());}
         
         return false;
-    }
-    public boolean checkUserName(int userID, String user_Name){
-        if(!user_Name.equalsIgnoreCase(getUserName(userID))){
-                if(checkUserName(user_Name) || "User Name".equalsIgnoreCase(user_Name)){
-                   return false; 
-                }
-                else{
-                    return true; 
-                }
-                
-            }
-        return true;
+        
+        //the end
     }
     
-    public static void main(String[] args) {
-        LoginPage lp = new LoginPage();
-//        if(lp.checkLogin("home1989", "dacey321") == true){
-//            System.out.println("true");
-//        }
-//        else{
-//            System.out.println("false");
-//        }
-
-
-        if(lp.checkUserName("rame") == true){
-            System.out.println("true");
-        }
-        else{
-            System.out.println("false");
-        }
+    //checks username inout and whether its change or not
+    public boolean checkUserName(int userID, String user_Name){
+        if(!user_Name.equalsIgnoreCase(getUserName(userID))){
+            return !(checkUserName(user_Name) || "User Name".equalsIgnoreCase(user_Name));    
+            }
+        return true;
         
+        //the end
     }
+    
+    
+    //the end of the class
 }

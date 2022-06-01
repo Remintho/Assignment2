@@ -24,6 +24,7 @@ public class Payment {
        conn = dbManager.getConnection();
     }
     
+    //return rservation info using the reserve ID
     public ResultSet getResrveInfo(int reserveID){
         ResultSet rs = null;
         try {
@@ -34,15 +35,23 @@ public class Payment {
             System.out.println(ex.getMessage());
         }
         return rs;
+        
+        //the end
     }
     
+    //pay for reseravtion using the reserveID 
     public void pay(int reserveID){
         try {
             this.statement = conn.createStatement();
-            this.statement.addBatch("UPDATE RESERVATION SET PAYMENT_STATUES = 'Payed' WHERE RESERVEID = "+reserveID+"");
+            this.statement.addBatch("UPDATE RESERVATION SET PAYMENT_STATUES = 'payed' WHERE RESERVEID = "+reserveID+"");
             this.statement.executeBatch();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
+        //the end
     }
+    
+    
+    //the end of the class
 }

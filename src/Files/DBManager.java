@@ -32,18 +32,20 @@ public final class DBManager {
         return this.conn;
     }
     
+    //establish connection
     public void establishConn(){
         if(conn == null){
             try {
-//                derby.drda.startNetworkServer=true;
                 conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
                 System.out.println(URL+" connection successfull....");
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
         }
+        //the end
     }
     
+    //query 
     public ResultSet queryDB(String sql) {
 
         Connection connection = this.conn;
@@ -58,8 +60,10 @@ public final class DBManager {
             System.out.println(ex.getMessage());
         }
         return resultSet;
+        //the end
     }
     
+    //update database 
     public void updateDB(String sql) {
 
         Connection connection = this.conn;
@@ -73,8 +77,10 @@ public final class DBManager {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        //the end
     }
     
+    //close connection 
     public void closeConn() {
         if (conn != null) {
             try {
@@ -83,9 +89,13 @@ public final class DBManager {
                 System.out.println(ex.getMessage());
             }
         }
+        //the end
     }
     
     public static void main(String[] args) {
         DBManager dbManager = new DBManager();
     }
+    
+    
+    //the end of the class
 }

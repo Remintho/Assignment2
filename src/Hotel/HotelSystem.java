@@ -57,7 +57,7 @@ public class HotelSystem extends javax.swing.JFrame {
         createAField = new javax.swing.JButton();
         returnMessage = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bannerLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bannerLabel.setText("Welcome to Hotel Intercontinental");

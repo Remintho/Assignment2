@@ -15,6 +15,8 @@ import javax.swing.JLabel;
  */
 public class ScaleImage {
     
+    
+    //scale image to fit into the specified label
     public ImageIcon scaledImage(JLabel label, String imagePath){
         ImageIcon icon = new ImageIcon(getClass().getResource(imagePath)); 
         Image img = icon.getImage();
@@ -22,6 +24,11 @@ public class ScaleImage {
         ImageIcon scaledIcon = new ImageIcon(imgScale);
         
         return scaledIcon;
+        
+        //the end
     }
     
+    
+    
+    //the end of the class
 }

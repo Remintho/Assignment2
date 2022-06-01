@@ -26,9 +26,9 @@ public class Report {
        conn = dbManager.getConnection();
     }
     
-   
-    public ResultSet getTodaysCheckin(String check_In){
-        Date checkin = Date.valueOf(check_In);
+   //returns todays checkin data 
+    public ResultSet getTodaysCheckin(String checcInDate){
+        Date checkin = Date.valueOf(checcInDate);
         ResultSet rs = null;
         try {
             String dataQuery = "SELECT USERID, ROOM_NUMBER, AMOUNT, PAYMENT_STATUES FROM RESERVATION WHERE CHECKIN_DATE = '"+checkin+"'";
@@ -38,10 +38,13 @@ public class Report {
             System.out.println(ex.getMessage());
         }
         return rs;
+        
+        //the end
     }
     
-    public ResultSet getTodaysCheckOut(String check_Out){
-        Date checkOut = Date.valueOf(check_Out);
+    //returns todays checkout data
+    public ResultSet getTodaysCheckOut(String checkOutDate){
+        Date checkOut = Date.valueOf(checkOutDate);
         ResultSet rs = null;
         try {
             String dataQuery = "SELECT USERID, ROOM_NUMBER, AMOUNT, PAYMENT_STATUES FROM RESERVATION WHERE CHECKOUT_DATE = '"+checkOut+"'";
@@ -51,9 +54,11 @@ public class Report {
             System.out.println(ex.getMessage());
         }
         return rs;
+        
+        //the end
     }
     
-    
+    //returns names that matches the userID
     public ResultSet getFullName(int userID){
         ResultSet rs = null;
         try {
@@ -64,8 +69,11 @@ public class Report {
             System.out.println(ex.getMessage());
         }
         return rs;
+        
+        //the end
     }
     
+    //get amount spend on a specific room
     public int getRevenue(ArrayList<Integer> arrList ){
         ResultSet rs;
         int total = 0;
@@ -83,8 +91,11 @@ public class Report {
             System.out.println(ex.getMessage());
         }
         return total;
+        
+        //the end
     }
     
+    //get all rooms number of specific bedtype
     public ArrayList<Integer> getRooms(String bedType){
         ResultSet rs;
         int total = 0;
@@ -101,8 +112,11 @@ public class Report {
             System.out.println(ex.getMessage());
         }
         return arrList;
+        
+        //the end
     }
     
+    //get all amount thats not paid
     public int notPaid(String status){
         ResultSet rs;
         int total = 0;
@@ -118,8 +132,11 @@ public class Report {
             System.out.println(ex.getMessage());
         }
         return total;
+        
+        //the end
     }
     
+    //get all amount thats paid 
     public int Paid(String status){
         ResultSet rs;
         int total = 0;
@@ -136,11 +153,60 @@ public class Report {
             System.out.println(ex.getMessage());
         }
         return total;
+        
+        //the end
     }
 
-    public static void main(String[] args) {
-        Report rp = new Report();
-        rp.Paid("Payed");
-        rp.notPaid("NotPayed");
+    //get all customers data 
+    public ResultSet getCust(){
+        ResultSet rs = null;
+        try {
+            String dataQuery = "SELECT * FROM CUSTOMER";
+            this.statement = conn.createStatement();
+            rs = this.statement.executeQuery(dataQuery);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return rs;
+        
+        //the end
     }
+    
+    //get all reservation data 
+    public ResultSet getReserve(){
+        ResultSet rs = null;
+        try {
+            String dataQuery = "SELECT * FROM RESERVATION";
+            this.statement = conn.createStatement();
+            rs = this.statement.executeQuery(dataQuery);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return rs;  
+        
+        //the end
+    }
+    
+    //get all rooms data
+    public ResultSet getRoom(){
+        ResultSet rs = null;
+        try {
+            String dataQuery = "SELECT * FROM ROOM";
+            this.statement = conn.createStatement();
+            rs = this.statement.executeQuery(dataQuery);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return rs;
+        
+        //the end
+    }
+    
+    
+    //the end of the class
 }
+

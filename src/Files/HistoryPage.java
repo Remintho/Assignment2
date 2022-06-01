@@ -25,7 +25,7 @@ public class HistoryPage {
        conn = dbManager.getConnection();
     }
     
-    
+    //return result of reservation using the input userID
     public ResultSet userData(int userID){
         ResultSet rs = null;
         try {
@@ -36,5 +36,9 @@ public class HistoryPage {
             System.out.println(ex.getMessage());
         }
         return rs;
+        
+        //the end 
     }
+    
+    //the end of the class
 }
