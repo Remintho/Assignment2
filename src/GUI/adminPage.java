@@ -51,7 +51,7 @@ public class AdminPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        reportTabbed = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         selectedUserField = new javax.swing.JTextField();
@@ -91,11 +91,26 @@ public class AdminPage extends javax.swing.JFrame {
         nameBTable = new javax.swing.JTable();
         jScrollPane6 = new javax.swing.JScrollPane();
         nameTable = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        custTable = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        reserveTable = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        roomTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
+            }
+        });
+
+        reportTabbed.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                reportTabbedFocusGained(evt);
             }
         });
 
@@ -161,10 +176,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         tableField.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "User-ID", "First Name", "Last Name", "Age", "Email", "Phone "
@@ -299,7 +311,7 @@ public class AdminPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Home", jPanel1);
+        reportTabbed.addTab("Home", jPanel1);
 
         reportTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         reportTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -512,17 +524,134 @@ public class AdminPage extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Daily report", jPanel2);
+        reportTabbed.addTab("Daily report", jPanel2);
+
+        custTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "User-ID", "Full Name", "Age", "Email", "Phone"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        custTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                custTableFocusGained(evt);
+            }
+        });
+        jScrollPane7.setViewportView(custTable);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+        );
+
+        reportTabbed.addTab("All Customer", jPanel3);
+
+        reserveTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Reserve-ID", "User-ID", "Room-Number", "Check-In", "Check-Out", "Amount", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        reserveTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                reserveTableFocusGained(evt);
+            }
+        });
+        jScrollPane8.setViewportView(reserveTable);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+        );
+
+        reportTabbed.addTab("All Reservation", jPanel4);
+
+        roomTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Room-Number", "Bed-Type", "Price"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane9.setViewportView(roomTable);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 815, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE)
+        );
+
+        reportTabbed.addTab("All Rooms", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(reportTabbed)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(reportTabbed, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -535,12 +664,19 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
         int userID = 0;
-        try{
-            userID = Integer.parseInt(selectedUserField.getText());
-            }catch(NumberFormatException ex){}
-        AddReservePage reserveRoom = new AddReservePage();
-        reserveRoom.getUserID(userID);
-        reserveRoom.setVisible(true);
+        if(selectedUserField.getText()==null || "".equalsIgnoreCase(selectedUserField.getText())){
+            returnLabel.setText("There is no data/value selected to open reserve page");
+            returnLabel.setForeground(Color.red);
+            returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        }
+        else{
+            try{
+                userID = Integer.parseInt(selectedUserField.getText());
+                }catch(NumberFormatException ex){}
+            AddReservePage reserveRoom = new AddReservePage();
+            reserveRoom.getUserID(userID);
+            reserveRoom.setVisible(true);
+        }
     }//GEN-LAST:event_reserveButtonActionPerformed
 
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
@@ -576,7 +712,7 @@ public class AdminPage extends javax.swing.JFrame {
                 } 
                 
             } catch (SQLException ex) {
-                Logger.getLogger(ReservationPage.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
         }
     }//GEN-LAST:event_searchButtonActionPerformed
@@ -638,57 +774,62 @@ public class AdminPage extends javax.swing.JFrame {
         DefaultTableModel tblModel = (DefaultTableModel)tableField.getModel();
         int row = tableField.getSelectedRow();
         int column = tableField.getSelectedColumn();
-      
-        switch (tableField.getSelectedColumn()) {
-            case 0:
-                returnLabel.setText("You can not edit the User-ID");
-                returnLabel.setForeground(Color.red);
-                returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
-                break;
-            case 1:
-                String fName = JOptionPane.showInputDialog("Input First Name");
-                if(fName != null){
-                    tblModel.setValueAt(fName, row, column);
-                }
-                else{}
-                tableField.clearSelection();
-                break;
-            case 2:
-                String lName = JOptionPane.showInputDialog("Input Last Name");
-                if(lName != null){
-                    tblModel.setValueAt(lName, row, column);
-                }
-                else{}
-                tableField.clearSelection();
-                break;
-            case 3:
-                String age = JOptionPane.showInputDialog("Input Age");
-                if(age != null){
-                    tblModel.setValueAt(age, row, column);
-                }
-                else{}
-                tableField.clearSelection();
-                break;
-            case 4:
-                String email = JOptionPane.showInputDialog("Input Email Address");
-                if(email != null){
-                    tblModel.setValueAt(email, row, column);
-                }
-                else{}
-                tableField.clearSelection();
-                break;
-            case 5:
-                String phone = JOptionPane.showInputDialog("Input Phone Number");
-                if(phone != null){
-                    tblModel.setValueAt(phone, row, column);
-                }
-                else{}
-                tableField.clearSelection();
-                break;
-            default:
-                break;
+        if(tableField.getSelectedRow()==-1 || tableField.getValueAt(tableField.getSelectedRow(), 0) == null || "".equals(tableField.getValueAt(tableField.getSelectedRow(), 0))){
+            returnLabel.setText("There is no data/value selected to be edited");
+            returnLabel.setForeground(Color.red);
+            returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
- 
+        else{
+            switch (tableField.getSelectedColumn()) {
+                case 0:
+                    returnLabel.setText("You can not edit the User-ID");
+                    returnLabel.setForeground(Color.red);
+                    returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+                    break;
+                case 1:
+                    String fName = JOptionPane.showInputDialog("Input First Name");
+                    if(fName != null){
+                        tblModel.setValueAt(fName, row, column);
+                    }
+                    else{}
+                    tableField.clearSelection();
+                    break;
+                case 2:
+                    String lName = JOptionPane.showInputDialog("Input Last Name");
+                    if(lName != null){
+                        tblModel.setValueAt(lName, row, column);
+                    }
+                    else{}
+                    tableField.clearSelection();
+                    break;
+                case 3:
+                    String age = JOptionPane.showInputDialog("Input Age");
+                    if(age != null){
+                        tblModel.setValueAt(age, row, column);
+                    }
+                    else{}
+                    tableField.clearSelection();
+                    break;
+                case 4:
+                    String email = JOptionPane.showInputDialog("Input Email Address");
+                    if(email != null){
+                        tblModel.setValueAt(email, row, column);
+                    }
+                    else{}
+                    tableField.clearSelection();
+                    break;
+                case 5:
+                    String phone = JOptionPane.showInputDialog("Input Phone Number");
+                    if(phone != null){
+                        tblModel.setValueAt(phone, row, column);
+                    }
+                    else{}
+                    tableField.clearSelection();
+                    break;
+                default:
+                    break;
+            }
+        } 
     }//GEN-LAST:event_editUpdateActionPerformed
 
     private void tableFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableFieldMouseClicked
@@ -707,7 +848,7 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         if(tableField.getSelectedRow()==-1 || tableField.getValueAt(tableField.getSelectedRow(), 0) == null || "".equals(tableField.getValueAt(tableField.getSelectedRow(), 0))){
-            returnLabel.setText("There is no data/vale selected");
+            returnLabel.setText("There is no data/value selected to be deleted");
             returnLabel.setForeground(Color.red);
             returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
         }
@@ -724,11 +865,51 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         selectedUserField.setCaretColor(Color.WHITE);
-        ArrayList<Integer> inList = new ArrayList<>();
+    }//GEN-LAST:event_formWindowOpened
 
-        //This is check in report table 
-        DefaultTableModel InModel = (DefaultTableModel)INTable.getModel();
+    private void expandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expandButtonActionPerformed
+       if(selectedUserField.getText()==null || "".equalsIgnoreCase(selectedUserField.getText())){
+            returnLabel.setText("There is no data/value selected to open userInfo");
+            returnLabel.setForeground(Color.red);
+            returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        }
+        else{
+            int userID = 0;
+            try{
+                userID = Integer.parseInt(selectedUserField.getText());
+            }catch(NumberFormatException ex){
+            }
+            ProfilePage proPage = new ProfilePage();
+            proPage.getID(userID);
+            proPage.setVisible(true);
+        }
+    }//GEN-LAST:event_expandButtonActionPerformed
+
+    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
+        if(selectedUserField.getText()==null || "".equalsIgnoreCase(selectedUserField.getText())){
+            returnLabel.setText("There is no data/value selected to open history page");
+            returnLabel.setForeground(Color.red);
+            returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        }
+        else{
+            int userID = 0;
+            try{
+                userID = Integer.parseInt(selectedUserField.getText());
+            }catch(NumberFormatException ex){
+            }
+            HistoryPage hp = new HistoryPage();
+            hp.getID(userID);
+            hp.setVisible(true);
+        }
+    }//GEN-LAST:event_historyButtonActionPerformed
+
+    //This is check in report table 
+    public void todaysInreport(){
+        ArrayList<Integer> inList = new ArrayList<>();
+        DefaultTableModel tableModel = (DefaultTableModel)INTable.getModel();
+        tableModel.setRowCount(0);
         DefaultTableModel nameModel = (DefaultTableModel)nameTable.getModel();
+        nameModel.setRowCount(0);
         ResultSet INrs = report.getTodaysCheckin(todaysDate.toString());
             try {
                 
@@ -737,8 +918,8 @@ public class AdminPage extends javax.swing.JFrame {
                     String roomNumber = Integer.toString(INrs.getInt("ROOM_NUMBER"));
                     String amount = Integer.toString(INrs.getInt("AMOUNT"));
                     String status = INrs.getString("PAYMENT_STATUES");
-                    String custData[] = new String[]{roomNumber, amount, status};
-                    InModel.addRow(custData);
+                    String cData[] = new String[]{roomNumber, amount, status};
+                    tableModel.addRow(cData);
                     int userid = Integer.parseInt(userID);
                     inList.add(userid);
                 } 
@@ -750,21 +931,25 @@ public class AdminPage extends javax.swing.JFrame {
 
                         String fullName = FName+" "+LName;
                         String userID = Integer.toString(user_Id);
-                        String custData[] = new String[]{userID, fullName};
-                        nameModel.addRow(custData);
+                        String fData[] = new String[]{userID, fullName};
+                        nameModel.addRow(fData);
                     } 
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ReservationPage.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         //ends here
-        
-        
-        //This is checkout report table
-        ArrayList<Integer> OutList = new ArrayList<>();
-        DefaultTableModel OutModel = (DefaultTableModel)OutTable.getModel();
+    }
+    
+    //This is checkout report table
+    public void todaysOutreport(){
+        DefaultTableModel tableModel = (DefaultTableModel)OutTable.getModel();
+        tableModel.setRowCount(0);
         DefaultTableModel nameBModel = (DefaultTableModel)nameBTable.getModel();
-        ResultSet Outrs = report.getTodaysCheckin(todaysDate.toString());
+        nameBModel.setRowCount(0);
+        ArrayList<Integer> OutList = new ArrayList<>();
+        ResultSet Outrs = report.getTodaysCheckOut(todaysDate.toString());
             try {
                 
                 while(Outrs.next()){
@@ -772,8 +957,8 @@ public class AdminPage extends javax.swing.JFrame {
                     String roomNumber = Integer.toString(Outrs.getInt("ROOM_NUMBER"));
                     String amount = Integer.toString(Outrs.getInt("AMOUNT"));
                     String status = Outrs.getString("PAYMENT_STATUES");
-                    String custData[] = new String[]{roomNumber, amount, status};
-                    OutModel.addRow(custData);
+                    String ctData[] = new String[]{roomNumber, amount, status};
+                    tableModel.addRow(ctData);
                     int userid = Integer.parseInt(userID);
                     OutList.add(userid);
                 } 
@@ -793,10 +978,12 @@ public class AdminPage extends javax.swing.JFrame {
                 Logger.getLogger(ReservationPage.class.getName()).log(Level.SEVERE, null, ex);
             }
         //end here
-        
-        
-        //This is report table
-        DefaultTableModel reportModel = (DefaultTableModel)reportTable.getModel();
+    }
+    
+    //This is report table
+    public void reportTable(){
+        DefaultTableModel tableModel = (DefaultTableModel)reportTable.getModel();
+        tableModel.setRowCount(0);
         String King = Integer.toString(report.getRevenue(report.getRooms("KING")));
         String Queen = Integer.toString(report.getRevenue(report.getRooms("QUEEN")));
         String Single = Integer.toString(report.getRevenue(report.getRooms("SINGLE")));
@@ -804,54 +991,107 @@ public class AdminPage extends javax.swing.JFrame {
         String triple = Integer.toString(report.getRevenue(report.getRooms("TRIPLE")));
         String Quad = Integer.toString(report.getRevenue(report.getRooms("QUAD")));
 
-        String custData[] = new String[]{King, Queen, Single, Double, triple, Quad};
-        reportModel.addRow(custData);
+        String rData[] = new String[]{King, Queen, Single, Double, triple, Quad};
+        tableModel.addRow(rData);
         //ends here 
+    }
+    
+    //this for custTabel
+    public void custTable(){
+        DefaultTableModel tableModel = (DefaultTableModel)custTable.getModel();
+        tableModel.setRowCount(0);
+        ResultSet custrs = report.getCust();
+        try {
+                while(custrs.next()){
+                    String userID = Integer.toString(custrs.getInt("USERID"));
+                    String FName = custrs.getString("FNAME");
+                    String LName = custrs.getString("LNAME");
+                    String age = Integer.toString(custrs.getInt("AGE"));
+                    String email = custrs.getString("EMAIL");
+                    String phone = custrs.getString("PHONE");
+                    String fullName = FName+" "+LName;
+                    String custData[] = new String[]{userID, fullName, age, email, phone};
+                    tableModel.addRow(custData);
+                    returnLabel.setText("");
+                } 
+                
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        //end of it
+    }
+    
+    //this for the reservetable
+    public void reserveTable(){
+        DefaultTableModel tableModel = (DefaultTableModel)reserveTable.getModel();
+        tableModel.setRowCount(0);
+        ResultSet rs = report.getReserve();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+                while(rs.next()){
+                    String reserve_ID = Integer.toString(rs.getInt("RESERVEID"));
+                    String userID = Integer.toString(rs.getInt("USERID"));
+                    String roomNumber = Integer.toString(rs.getInt("ROOM_NUMBER"));
+                    String check_In = dateFormat.format(rs.getDate("CHECKIN_DATE"));
+                    String checkOut = dateFormat.format(rs.getDate("CHECKOUT_DATE"));
+                    String total = Integer.toString(rs.getInt("AMOUNT"));
+                    String payment = rs.getString("PAYMENT_STATUES");
+
+                    String rserveData[] = new String[]{reserve_ID, userID, roomNumber, check_In, checkOut, total, payment};
+                    tableModel.addRow(rserveData);
+                }
+                
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        //end of it
+    }
+    
+    
+    //this for roomtable
+    public void roomTable(){
+        DefaultTableModel tblModel = (DefaultTableModel)roomTable.getModel();
+        tblModel.setRowCount(0);
+        ResultSet rs = report.getRoom();
+        try {
+                while(rs.next()){
+                    String ROOM_NUMBER = Integer.toString(rs.getInt("ROOM_NUMBER"));
+                    String BED_TYPE = rs.getString("BED_TYPE");
+                    String PRICE = Integer.toString(rs.getInt("PRICE"));
+                    String custData[] = new String[]{ROOM_NUMBER, BED_TYPE, PRICE};
+                    tblModel.addRow(custData);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         
-        int totalPaid =report.Paid("payed");
-        int totalNPaid =report.notPaid("notpayed");
+        //end of it
+    }
+    
+    
+    private void reportTabbedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_reportTabbedFocusGained
+        todaysInreport();
+        todaysOutreport();
+        reportTable();
+        custTable();
+        reserveTable();
+        roomTable();
+        int totalPaid =report.getStatus("payed");
+        int totalNPaid =report.getStatus("notpayed");
         int overall = totalNPaid+totalPaid;
         paidLabel.setText("$ "+Integer.toString(totalPaid));
         nPaidLabel.setText("$ "+Integer.toString(totalNPaid));
         overallLabel.setText("$ "+Integer.toString(overall));
-  
-    }//GEN-LAST:event_formWindowOpened
 
-    private void expandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expandButtonActionPerformed
-       if(selectedUserField.getText()==null || "".equalsIgnoreCase(selectedUserField.getText())){
-            returnLabel.setText("There is no data/value selected");
-            returnLabel.setForeground(Color.red);
-            returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        }
-        else{
-            int userID = 0;
-            try{
-                userID = Integer.parseInt(selectedUserField.getText());
-            }catch(NumberFormatException ex){
-            }
-            ProfilePage proPage = new ProfilePage();
-            proPage.getID(userID);
-            proPage.setVisible(true);
-        }
-    }//GEN-LAST:event_expandButtonActionPerformed
+    }//GEN-LAST:event_reportTabbedFocusGained
 
-    private void historyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historyButtonActionPerformed
-       if(selectedUserField.getText()==null || "".equalsIgnoreCase(selectedUserField.getText())){
-            returnLabel.setText("There is no data/value selected");
-            returnLabel.setForeground(Color.red);
-            returnLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        }
-        else{
-            int userID = 0;
-            try{
-                userID = Integer.parseInt(selectedUserField.getText());
-            }catch(NumberFormatException ex){
-            }
-            HistoryPage hp = new HistoryPage();
-            hp.getID(userID);
-            hp.setVisible(true);
-        }
-    }//GEN-LAST:event_historyButtonActionPerformed
+    private void custTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_custTableFocusGained
+        
+    }//GEN-LAST:event_custTableFocusGained
+
+    private void reserveTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_reserveTableFocusGained
+        
+    }//GEN-LAST:event_reserveTableFocusGained
 
     /**
      * @param args the command line arguments
@@ -881,10 +1121,8 @@ public class AdminPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminPage().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AdminPage().setVisible(true);
         });
     }
 
@@ -892,6 +1130,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JTable INTable;
     private javax.swing.JTable OutTable;
     private javax.swing.JButton addUserButton;
+    private javax.swing.JTable custTable;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editUpdate;
     private javax.swing.JButton expandButton;
@@ -905,13 +1144,18 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JButton logOut;
     private javax.swing.JLabel nPaidLabel;
     private javax.swing.JTable nameBTable;
@@ -919,10 +1163,13 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel overallLabel;
     private javax.swing.JLabel paidLabel;
     private javax.swing.JLabel profileLabel;
+    private javax.swing.JTabbedPane reportTabbed;
     private javax.swing.JTable reportTable;
     private javax.swing.JButton reserveButton;
+    private javax.swing.JTable reserveTable;
     private javax.swing.JLabel returnLabel;
     private javax.swing.JButton roomManag;
+    private javax.swing.JTable roomTable;
     private javax.swing.JComboBox<String> searchBox;
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchField;
