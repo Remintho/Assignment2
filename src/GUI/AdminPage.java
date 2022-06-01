@@ -903,21 +903,13 @@ public class AdminPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_historyButtonActionPerformed
 
-    private void reportTabbedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_reportTabbedFocusGained
+    //This is check in report table 
+    public void todaysInreport(){
         ArrayList<Integer> inList = new ArrayList<>();
-        DefaultTableModel InModel = (DefaultTableModel)INTable.getModel();
-        InModel.setRowCount(0);
+        DefaultTableModel tableModel = (DefaultTableModel)INTable.getModel();
+        tableModel.setRowCount(0);
         DefaultTableModel nameModel = (DefaultTableModel)nameTable.getModel();
         nameModel.setRowCount(0);
-        DefaultTableModel OutModel = (DefaultTableModel)OutTable.getModel();
-        OutModel.setRowCount(0);
-        DefaultTableModel nameBModel = (DefaultTableModel)nameBTable.getModel();
-        nameBModel.setRowCount(0);
-        DefaultTableModel reportModel = (DefaultTableModel)reportTable.getModel();
-        reportModel.setRowCount(0);
-        
-        
-        //This is check in report table 
         ResultSet INrs = report.getTodaysCheckin(todaysDate.toString());
             try {
                 
@@ -927,7 +919,7 @@ public class AdminPage extends javax.swing.JFrame {
                     String amount = Integer.toString(INrs.getInt("AMOUNT"));
                     String status = INrs.getString("PAYMENT_STATUES");
                     String cData[] = new String[]{roomNumber, amount, status};
-                    InModel.addRow(cData);
+                    tableModel.addRow(cData);
                     int userid = Integer.parseInt(userID);
                     inList.add(userid);
                 } 
@@ -946,10 +938,16 @@ public class AdminPage extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(ReservationPage.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         //ends here
-        
-        
-        //This is checkout report table
+    }
+    
+    //This is checkout report table
+    public void todaysOutreport(){
+        DefaultTableModel tableModel = (DefaultTableModel)OutTable.getModel();
+        tableModel.setRowCount(0);
+        DefaultTableModel nameBModel = (DefaultTableModel)nameBTable.getModel();
+        nameBModel.setRowCount(0);
         ArrayList<Integer> OutList = new ArrayList<>();
         ResultSet Outrs = report.getTodaysCheckOut(todaysDate.toString());
             try {
@@ -960,7 +958,7 @@ public class AdminPage extends javax.swing.JFrame {
                     String amount = Integer.toString(Outrs.getInt("AMOUNT"));
                     String status = Outrs.getString("PAYMENT_STATUES");
                     String ctData[] = new String[]{roomNumber, amount, status};
-                    OutModel.addRow(ctData);
+                    tableModel.addRow(ctData);
                     int userid = Integer.parseInt(userID);
                     OutList.add(userid);
                 } 
@@ -980,9 +978,12 @@ public class AdminPage extends javax.swing.JFrame {
                 Logger.getLogger(ReservationPage.class.getName()).log(Level.SEVERE, null, ex);
             }
         //end here
-        
-        
-        //This is report table
+    }
+    
+    //This is report table
+    public void reportTable(){
+        DefaultTableModel tableModel = (DefaultTableModel)reportTable.getModel();
+        tableModel.setRowCount(0);
         String King = Integer.toString(report.getRevenue(report.getRooms("KING")));
         String Queen = Integer.toString(report.getRevenue(report.getRooms("QUEEN")));
         String Single = Integer.toString(report.getRevenue(report.getRooms("SINGLE")));
@@ -991,20 +992,14 @@ public class AdminPage extends javax.swing.JFrame {
         String Quad = Integer.toString(report.getRevenue(report.getRooms("QUAD")));
 
         String rData[] = new String[]{King, Queen, Single, Double, triple, Quad};
-        reportModel.addRow(rData);
+        tableModel.addRow(rData);
         //ends here 
-        
-        int totalPaid =report.Paid("payed");
-        int totalNPaid =report.notPaid("notpayed");
-        int overall = totalNPaid+totalPaid;
-        paidLabel.setText("$ "+Integer.toString(totalPaid));
-        nPaidLabel.setText("$ "+Integer.toString(totalNPaid));
-        overallLabel.setText("$ "+Integer.toString(overall));
-        
-        
-        //this for custTabel
-        DefaultTableModel custModel = (DefaultTableModel)custTable.getModel();
-        custModel.setRowCount(0);
+    }
+    
+    //this for custTabel
+    public void custTable(){
+        DefaultTableModel tableModel = (DefaultTableModel)custTable.getModel();
+        tableModel.setRowCount(0);
         ResultSet custrs = report.getCust();
         try {
                 while(custrs.next()){
@@ -1016,7 +1011,7 @@ public class AdminPage extends javax.swing.JFrame {
                     String phone = custrs.getString("PHONE");
                     String fullName = FName+" "+LName;
                     String custData[] = new String[]{userID, fullName, age, email, phone};
-                    custModel.addRow(custData);
+                    tableModel.addRow(custData);
                     returnLabel.setText("");
                 } 
                 
@@ -1024,32 +1019,37 @@ public class AdminPage extends javax.swing.JFrame {
                 System.out.println(ex.getMessage());
             }
         //end of it
-        
-        //this for the reservetable
-        DefaultTableModel reserveModel = (DefaultTableModel)reserveTable.getModel();
-        reserveModel.setRowCount(0);
-        ResultSet resvrvers = report.getReserve();
+    }
+    
+    //this for the reservetable
+    public void reserveTable(){
+        DefaultTableModel tableModel = (DefaultTableModel)reserveTable.getModel();
+        tableModel.setRowCount(0);
+        ResultSet rs = report.getReserve();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
-                while(resvrvers.next()){
-                    String reserve_ID = Integer.toString(resvrvers.getInt("RESERVEID"));
-                    String userID = Integer.toString(resvrvers.getInt("USERID"));
-                    String roomNumber = Integer.toString(resvrvers.getInt("ROOM_NUMBER"));
-                    String check_In = dateFormat.format(resvrvers.getDate("CHECKIN_DATE"));
-                    String checkOut = dateFormat.format(resvrvers.getDate("CHECKOUT_DATE"));
-                    String total = Integer.toString(resvrvers.getInt("AMOUNT"));
-                    String payment = resvrvers.getString("PAYMENT_STATUES");
+                while(rs.next()){
+                    String reserve_ID = Integer.toString(rs.getInt("RESERVEID"));
+                    String userID = Integer.toString(rs.getInt("USERID"));
+                    String roomNumber = Integer.toString(rs.getInt("ROOM_NUMBER"));
+                    String check_In = dateFormat.format(rs.getDate("CHECKIN_DATE"));
+                    String checkOut = dateFormat.format(rs.getDate("CHECKOUT_DATE"));
+                    String total = Integer.toString(rs.getInt("AMOUNT"));
+                    String payment = rs.getString("PAYMENT_STATUES");
 
                     String rserveData[] = new String[]{reserve_ID, userID, roomNumber, check_In, checkOut, total, payment};
-                    reserveModel.addRow(rserveData);
+                    tableModel.addRow(rserveData);
                 }
                 
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
         //end of it
-        
-        //this for roomtable
+    }
+    
+    
+    //this for roomtable
+    public void roomTable(){
         DefaultTableModel tblModel = (DefaultTableModel)roomTable.getModel();
         tblModel.setRowCount(0);
         ResultSet rs = report.getRoom();
@@ -1064,7 +1064,25 @@ public class AdminPage extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
+        
         //end of it
+    }
+    
+    
+    private void reportTabbedFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_reportTabbedFocusGained
+        todaysInreport();
+        todaysOutreport();
+        reportTable();
+        custTable();
+        reserveTable();
+        roomTable();
+        int totalPaid =report.getStatus("payed");
+        int totalNPaid =report.getStatus("notpayed");
+        int overall = totalNPaid+totalPaid;
+        paidLabel.setText("$ "+Integer.toString(totalPaid));
+        nPaidLabel.setText("$ "+Integer.toString(totalNPaid));
+        overallLabel.setText("$ "+Integer.toString(overall));
+
     }//GEN-LAST:event_reportTabbedFocusGained
 
     private void custTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_custTableFocusGained
@@ -1103,10 +1121,8 @@ public class AdminPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminPage().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AdminPage().setVisible(true);
         });
     }
 
