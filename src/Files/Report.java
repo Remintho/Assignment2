@@ -86,6 +86,7 @@ public class Report extends Reservation {
                     int amount = rs.getInt("AMOUNT");
                     total += amount;
                 }
+                this.statement.close();
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -107,6 +108,7 @@ public class Report extends Reservation {
                 int room_Number = rs.getInt("ROOM_NUMBER");
                 arrList.add(room_Number);
              }
+             this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -127,6 +129,7 @@ public class Report extends Reservation {
                 int npaid = rs.getInt("AMOUNT");
                 total += npaid;
              }
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -176,7 +179,6 @@ public class Report extends Reservation {
             String dataQuery = "SELECT * FROM ROOM";
             this.statement = conn.createStatement();
             rs = this.statement.executeQuery(dataQuery);
-
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

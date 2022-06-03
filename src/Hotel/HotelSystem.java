@@ -171,16 +171,17 @@ public class HotelSystem extends javax.swing.JFrame {
         if(passwordField.getPassword().length == 0 || userNameField.getText().trim().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(rootPane, "invalid, try again");
         }
-        else if(userNameField.getText().equalsIgnoreCase("admin") && passText.equalsIgnoreCase("admin")){
+        else if(userNameField.getText().equals("admin") && passText.equals("admin")){
             AdminPage adminPage = new AdminPage();
             adminPage.setVisible(true);
             this.setVisible(false);
         }
         else if(lPage.checkLogin(userNameField.getText(), passText)==true){
+            returnMessage.setText("yay");
             returnMessage.setForeground(Color.blue);
+            loginButton.setEnabled(false);
             ReservationPage reservationPage = new ReservationPage();
             reservationPage.getuserName(userNameField.getText());
-            loginButton.setEnabled(false);
             reservationPage.setVisible(true);
             this.setVisible(false);
         }
@@ -189,10 +190,11 @@ public class HotelSystem extends javax.swing.JFrame {
             returnMessage.setText("bad password or username");
             returnMessage.setForeground(Color.red);
         }
+        
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-         dispose();
+        System.exit(0);
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void createAFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAFieldActionPerformed
@@ -200,7 +202,8 @@ public class HotelSystem extends javax.swing.JFrame {
         newUser.setVisible(true);
         userNameField.setText("");
         passwordField.setText("");
-        returnMessage.setText("");    
+        returnMessage.setText("");
+                
     }//GEN-LAST:event_createAFieldActionPerformed
     
     
@@ -233,10 +236,8 @@ public class HotelSystem extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HotelSystem().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new HotelSystem().setVisible(true);
         });
     }
 

@@ -59,6 +59,7 @@ public class Registration {
                                             + "PHONE = '"+phNumber+"' "
                                                     + "WHERE USERID = "+userID+"");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -100,6 +101,7 @@ public class Registration {
             this.statement.addBatch("INSERT INTO CUSTOMER (USERID, FNAME, LNAME, AGE, EMAIL, PHONE)"
                     + "VALUES("+getLastID()+", '"+fName+"', '"+lName+"', "+Age+", '"+email+"', '"+phNumber+"')");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -131,7 +133,7 @@ public class Registration {
         }
         //Age
         
-        else if((Age<=17) || "Age".equalsIgnoreCase(age))
+        else if((Age<18) || "Age".equalsIgnoreCase(age))
         {
             returnMessage = "must be 18 or older";
             return returnMessage;
@@ -149,7 +151,6 @@ public class Registration {
             returnMessage = "invalid phone number, hint: 022385960";
             return returnMessage;
         }
-        
         return returnMessage;
         
         //the end
@@ -176,7 +177,7 @@ public class Registration {
         }
         //Age
         
-        else if((Age<=18) || "Age".equalsIgnoreCase(age))
+        else if((Age<18) || "Age".equalsIgnoreCase(age))
         {
             return false;
         } 

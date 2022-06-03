@@ -27,7 +27,9 @@ public class AdminPage {
     //search by input number choice and text input of th user 
     public ResultSet searchBy(int choice, String input){
         ResultSet rs = null;
+        
         try {
+            this.statement = conn.createStatement();
             if(input.equalsIgnoreCase("")){
                 rs = null;
             }
@@ -40,7 +42,6 @@ public class AdminPage {
                             inputINT = Integer.parseInt(input);
                             }catch(NumberFormatException ex){}
                             String dataQuery = "SELECT * FROM CUSTOMER WHERE USERID ="+inputINT+"";
-                            this.statement = conn.createStatement();
                             rs = this.statement.executeQuery(dataQuery);
                             break;
                         }
@@ -48,28 +49,24 @@ public class AdminPage {
                     case 1:
                         {
                             String dataQuery = "SELECT * FROM CUSTOMER WHERE FNAME ='"+input+"'";
-                            this.statement = conn.createStatement();
                             rs = this.statement.executeQuery(dataQuery);
                             break;
                         }
                     case 2:
                         {
                             String dataQuery = "SELECT * FROM CUSTOMER WHERE LNAME ='"+input+"'";
-                            this.statement = conn.createStatement();
                             rs = this.statement.executeQuery(dataQuery);
                             break;
                         }
                     case 3:
                         {
                             String dataQuery = "SELECT * FROM CUSTOMER WHERE EMAIL ='"+input+"'";
-                            this.statement = conn.createStatement();
                             rs = this.statement.executeQuery(dataQuery);
                             break;
                         }
                     case 4:
                         {
                             String dataQuery = "SELECT * FROM CUSTOMER WHERE PHONE ='"+input+"'";
-                            this.statement = conn.createStatement();
                             rs = this.statement.executeQuery(dataQuery);
                             break;
                         }                    
@@ -108,6 +105,7 @@ public class AdminPage {
                                             + "PHONE = '"+phNumber+"' "
                                                     + "WHERE USERID = "+userID+"");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -130,6 +128,7 @@ public class AdminPage {
             this.statement.addBatch("DELETE FROM RESERVATION WHERE USERID = "+userID+"");
             this.statement.addBatch("DELETE FROM CUSTOMER WHERE USERID = "+userID+"");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

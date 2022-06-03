@@ -45,6 +45,7 @@ public class RoomManag {
     public ResultSet searchBy(int choice, String input){
         ResultSet rs = null;
         try {
+            this.statement = conn.createStatement();
             int inputINT = 0;
             try{
                 inputINT = Integer.parseInt(input);
@@ -60,7 +61,6 @@ public class RoomManag {
                             try{
                             }catch(NumberFormatException ex){}
                             String dataQuery = "SELECT * FROM ROOM WHERE ROOM_NUMBER ="+inputINT+"";
-                            this.statement = conn.createStatement();
                             rs = this.statement.executeQuery(dataQuery);
                             break;
                         }
@@ -68,14 +68,12 @@ public class RoomManag {
                     case 1:
                         {
                             String dataQuery = "SELECT * FROM ROOM WHERE BED_TYPE ='"+input.toUpperCase()+"'";
-                            this.statement = conn.createStatement();
                             rs = this.statement.executeQuery(dataQuery);
                             break;
                         }
                     case 2:
                         {
                             String dataQuery = "SELECT * FROM ROOM WHERE PRICE ="+inputINT+"";
-                            this.statement = conn.createStatement();
                             rs = this.statement.executeQuery(dataQuery);
                             break;
                         }
@@ -106,6 +104,7 @@ public class RoomManag {
             this.statement = conn.createStatement();
             this.statement.addBatch("UPDATE ROOM SET PRICE = "+Price+" WHERE BED_TYPE = '"+bed_Type+"'");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -162,6 +161,7 @@ public class RoomManag {
             this.statement = conn.createStatement();
             this.statement.addBatch("DELETE FROM ROOM WHERE ROOM_NUMBER = "+room_Number+"");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -189,6 +189,7 @@ public class RoomManag {
             this.statement.addBatch("INSERT INTO ROOM(ROOM_NUMBER, BED_TYPE, PRICE) "
                     + "VALUES("+room_Number+", '"+bedType+"', "+price+")");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

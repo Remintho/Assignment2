@@ -70,6 +70,7 @@ public class LoginPage {
             this.statement = conn.createStatement();
             this.statement.addBatch("UPDATE GUEST SET USERNAME = '"+uN+"', PASSWORD = '"+pW+"'  WHERE USERID = "+userID+"");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

@@ -45,6 +45,7 @@ public class Payment {
             this.statement = conn.createStatement();
             this.statement.addBatch("UPDATE RESERVATION SET PAYMENT_STATUES = 'payed' WHERE RESERVEID = "+reserveID+"");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

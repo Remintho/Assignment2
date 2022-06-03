@@ -71,7 +71,6 @@ public class Reservation {
        
         int lastID = 0;
         try {
-            this.statement = conn.createStatement();
             rs = this.statement.executeQuery("SELECT MAX(RESERVEID) FROM RESERVATION");
             if(rs.next()){
                 lastID = (((Number)rs.getObject(1)).intValue()) + 1;
@@ -92,7 +91,6 @@ public class Reservation {
        
         int price = 0;
         try {
-            this.statement = conn.createStatement();
             rs = this.statement.executeQuery("SELECT PRICE FROM ROOM WHERE ROOM_NUMBER = "+roomNumber+"");
             if(rs.next()){
                 price = (((Number)rs.getObject(1)).intValue());
@@ -153,6 +151,7 @@ public class Reservation {
                                                     + " "+getAmount(checkin, checkOUT)+","
                                                             + " '"+PAYMENT_STATUES+"')");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }

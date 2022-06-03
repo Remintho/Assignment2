@@ -46,6 +46,7 @@ public class CreateTable {
                     + "( 107 , 'lola ', 'lewers ', 55,'lolalewers@jourpaide.com', '0287412304'), \n"
                     + "( 108 , 'finn ', 'hartnett ', 26,'finnhartnett@dayreo.com', '0274177506')");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }
@@ -72,6 +73,7 @@ public class CreateTable {
                     + "(107,'hicend', 'loltext'), \n"
                     + "(108,'racb1995', 'finnhart342')");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }
@@ -107,6 +109,7 @@ public class CreateTable {
                     + "(17,'QUAD', 400), \n"
                     + "(18,'QUAD', 400)");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }
@@ -137,6 +140,7 @@ public class CreateTable {
                     + "(6, 107, 4, '2022-05-15', '2022-06-17', 800, 'payed'), \n"
                     + "(7, 108, 16, '2022-05-15', '2022-05-20', 1500, 'payed')");
             this.statement.executeBatch();
+            this.statement.close();
         } catch (SQLException ex) {
             System.out.println(ex.getNextException());
         }

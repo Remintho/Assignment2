@@ -226,17 +226,19 @@ public class CreateUser extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
-        while(register.check(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText())==false ){
-           returnMessage.setText(register.checkInfo(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText()));
-           returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
-           returnMessage.setForeground(Color.red); 
-        break;
-        }
+        
         if("User Name".equalsIgnoreCase(userNField.getText())){
             returnMessage.setText("Please enter username");
             returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
             returnMessage.setForeground(Color.red);
         }
+        
+        else if(!register.check(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText()) ){
+           returnMessage.setText(register.checkInfo(fnField.getText(), lnField.getText(), ageField.getText(), phField.getText(), emailField.getText()));
+           returnMessage. setHorizontalAlignment(SwingConstants. CENTER);
+           returnMessage.setForeground(Color.red);
+        }
+        
         else if(lPage.checkUserName(userNField.getText())){
             returnMessage.setText("This username is used");
             returnMessage. setHorizontalAlignment(SwingConstants. CENTER);

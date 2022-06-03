@@ -56,7 +56,7 @@ public class LoginPage extends javax.swing.JFrame {
         createAField = new javax.swing.JButton();
         returnMessage = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bannerLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bannerLabel.setText("Welcome to Hotel Intercontinental");
@@ -170,13 +170,15 @@ public class LoginPage extends javax.swing.JFrame {
         if(passwordField.getPassword().length == 0 || userNameField.getText().trim().equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(rootPane, "invalid, try again");
         }
-        else if(userNameField.getText().equalsIgnoreCase("admin") && passText.equalsIgnoreCase("admin")){
+        else if(userNameField.getText().equals("admin") && passText.equals("admin")){
             AdminPage adminPage = new AdminPage();
             adminPage.setVisible(true);
             this.setVisible(false);
         }
         else if(lPage.checkLogin(userNameField.getText(), passText)==true){
+            returnMessage.setText("yay");
             returnMessage.setForeground(Color.blue);
+            loginButton.setEnabled(false);
             ReservationPage reservationPage = new ReservationPage();
             reservationPage.getuserName(userNameField.getText());
             reservationPage.setVisible(true);
@@ -191,7 +193,7 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-         dispose();
+        System.exit(0);
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void createAFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAFieldActionPerformed

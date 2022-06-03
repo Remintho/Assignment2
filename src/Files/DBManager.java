@@ -49,7 +49,7 @@ public final class DBManager {
     public ResultSet queryDB(String sql) {
 
         Connection connection = this.conn;
-        Statement statement = null;
+        Statement statement;
         ResultSet resultSet = null;
 
         try {
@@ -67,8 +67,7 @@ public final class DBManager {
     public void updateDB(String sql) {
 
         Connection connection = this.conn;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Statement statement;
 
         try {
             statement = connection.createStatement();
