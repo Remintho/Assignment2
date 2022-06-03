@@ -28,35 +28,6 @@ public class ReservationTest {
     }
 
 
-    /**
-     * Test of getPrice method, of class Reservation.
-     */
-    @Test
-    public void testGetPrice() {
-        System.out.println("get Price");
-        int roomnumber = 1;
-        Reservation instance = new Reservation();
-        int expResult = 400;
-        int result = instance.getPrice(roomnumber);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getAmount method, of class Reservation.
-     */
-    @Test
-    public void testGetAmount() {
-        System.out.println("get Amount");
-        Date cin = new Date(2022, 6, 3);
-        Date cout = new Date(2022, 6, 10);
-        Date checkIn = cin;
-        Date checkOut = cout;
-        Reservation instance = new Reservation();
-        float expResult = 0.0F;
-        float result = instance.getAmount(checkIn, checkOut);
-        assertEquals(expResult, result, 0.0);
-
-    }
 
     /**
      * Test of getIDLogin method, of class Reservation.
