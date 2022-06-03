@@ -937,7 +937,7 @@ public class AdminPage extends javax.swing.JFrame {
                     } 
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(ReservationPage.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
             
         //ends here
@@ -976,7 +976,7 @@ public class AdminPage extends javax.swing.JFrame {
                     } 
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(ReservationPage.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex.getMessage());
             }
         //end here
     }
